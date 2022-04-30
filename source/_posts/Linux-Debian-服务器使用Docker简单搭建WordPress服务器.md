@@ -2,6 +2,7 @@
 title: Linux(Debian)服务器使用Docker简单搭建WordPress服务器
 date: 2022-04-30 16:17:33
 tags: [linux, 服务器, docker, WordPress]
+categories: [技术]
 ---
 
 Docker可以简化WordPress的部署过程，不需要自己安装phpMyAdmin，也不需要自己配置MySQL数据库。
@@ -54,10 +55,10 @@ docker run --name mysql --network wp-net --network-alias db -e MYSQL_ROOT_PASSWO
 ```
 
 >--name：把这个容器命名为mysql  
---network：让这个容器加入名为wp-net的网络（重要）  
---network-alias：为这个容器创建别名db，理解为后面用这个名字代表数据库的地址（重要）  
---e：为设置环境变量，MYSQL_ROOT_PASSWORD指定MySQL中root用户的密码，经测试不指定无法正常启动容器。  
--d：后台运行
+>--network：让这个容器加入名为wp-net的网络（重要）  
+>--network-alias：为这个容器创建别名db，理解为后面用这个名字代表数据库的地址（重要）  
+>--e：为设置环境变量，MYSQL_ROOT_PASSWORD指定MySQL中root用户的密码，经测试不指定无法正常启动容器。  
+>-d：后台运行
 
 最后的mysql为镜像的名称，如果你要使用特定版本，则写为 mysql:5.1 即可。
 
