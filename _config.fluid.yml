@@ -688,6 +688,7 @@ disqus:
   # See: https://github.com/SukkaW/DisqusJS
   disqusjs: true
   apikey: xHmHsIHiGAtmMqf9A0VodNjxHhwWlfnDra4nmsIKeKG2DrVUrjVXt9u6dL7GoyfV
+  api: https://disqus.skk.moe/disqus/
 
 # Gitalk
 # 基于 GitHub Issues
