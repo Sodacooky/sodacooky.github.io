@@ -1,16 +1,10 @@
 ---
 title: 关于 Sodacooky
-date: 2022-04-30 15:13:11
+layout: about
 ---
 
-Sodacooky
+## 联系方式
 
-不可食用
+正式Email sodacooky@foxmail.com
 
-Gitee:  [Jump...](https://gitee.com/sodacooky)
-
-Github: [Jump...](https://github.com/Sodacooky)
-
-Formal Email: sodacooky@foxmail.com
-
-Casual Email: 523379653@qq.com
+吹水Email 523379653@qq.com
