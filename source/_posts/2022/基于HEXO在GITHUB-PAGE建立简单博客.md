@@ -93,6 +93,12 @@ deploy:
 
 还要在Github仓库中，在Settings -> Pages -> Source中把Branch改为你上面设置的分支。
 
+最后，在你通过```hexo new```创建文件，```hexo clean```清理生成缓存（可选），```hexo generate```生成静态文件后，你就可以
+```sh
+hexo deploy
+```
+将更新部署到Github，等待一下就生效。
+
 ## CNAME
 
 就在上面设置分支时，你会看到一个Custom domain，如果你直接在那里添加，只会在远程仓库中的指定分支中创建一个CNAME文件，下次push就会失效。
