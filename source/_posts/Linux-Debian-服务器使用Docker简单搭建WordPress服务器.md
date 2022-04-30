@@ -1,6 +1,6 @@
 ---
 title: Linux(Debian)服务器使用Docker简单搭建WordPress服务器
-date: 2022-08-08 21:27:14
+date: 2021-08-08 21:27:14
 tags: [Linux, 服务器, Docker, WordPress]
 categories: [技术]
 ---
