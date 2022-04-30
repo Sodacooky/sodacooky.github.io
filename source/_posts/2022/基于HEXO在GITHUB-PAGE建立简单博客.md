@@ -9,7 +9,7 @@ tags: [HEXO, 博客, Github]
 
 如果你不想折腾，那么托管WordPress是最好的选择。
 
-HEXO不止可以部署到Github Pages，因为其本质是通过Markdowm生成静态页面，所以任何你想到的网页容器都行。
+HEXO不止可以部署到Github Pages，因为其本质是通过Markdown生成静态页面，所以任何你想到的网页容器都行。
 
 WordPress虽然一站式解决，但是安装很麻烦，故我选择了HEXO。
 

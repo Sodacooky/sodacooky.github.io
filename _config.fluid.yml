@@ -97,7 +97,7 @@ fun_features:
   # Add an anchor icon to the title on the post page
   anchorjs:
     enable: true
-    element: h1,h2,h3,h4,h5,h6
+    element: h1,h2,h3,h4
     placement: right
     # Options: hover | always | touch
     visible: hover
@@ -318,7 +318,7 @@ navbar:
   # Navigation bar menu. `key` is used to associate languages/*.yml. If there is no association, the value of `key` itself will be displayed; if `icon` is a css class, it can be omitted; adding `name` can force the display of the specified name
   menu:
     - { key: "home", link: "/", icon: "iconfont icon-home-fill" }
-    - { key: "archive", link: "/archives/", icon: "iconfont icon-archive-fill" }
+    - { key: "archive", link: "/archives/", icon: "iconfont icon-archive-fill", name: "历史" }
     - { key: "category", link: "/categories/", icon: "iconfont icon-category-fill" }
     - { key: "tag", link: "/tags/", icon: "iconfont icon-tags-fill" }
     - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
@@ -650,7 +650,7 @@ post:
   # 评论插件
   # Comment plugin
   comments:
-    enable: false
+    enable: true
     # 指定的插件，需要同时设置对应插件的必要参数
     # The specified plugin needs to set the necessary parameters at the same time
     # Options: utterances | disqus | gitalk | valine | waline | changyan | livere | remark42 | twikoo | cusdis
@@ -682,12 +682,12 @@ utterances:
 # Based on third-party service
 # See: https://disqus.com
 disqus:
-  shortname:
+  shortname: sodacooky
   # 以下为 Disqusjs 支持, 国内用户如果想使用 Disqus 建议配合使用
   # The following are Disqusjs configurations, please ignore if DisqusJS is not required
   # See: https://github.com/SukkaW/DisqusJS
-  disqusjs: false
-  apikey:
+  disqusjs: true
+  apikey: xHmHsIHiGAtmMqf9A0VodNjxHhwWlfnDra4nmsIKeKG2DrVUrjVXt9u6dL7GoyfV
 
 # Gitalk
 # 基于 GitHub Issues
@@ -862,12 +862,12 @@ tag:
 about:
   enable: true
   banner_img: /cold_img/default.jpg
-  banner_img_height: 60
+  banner_img_height: 40
   banner_mask_alpha: 0.3
-  subtitle:
-  avatar: /cold_img/my_avatar.jpg
+  subtitle: Sodacooky 的自我介绍！
+  avatar: https://avatars.githubusercontent.com/u/20016889
   name: "Sodacooky"
-  intro: "梦想是做车万同人游戏的一般Web搬砖人（也许）"
+  intro: "梦想是做车万同人游戏的一般Web搬砖人"
   # 更多图标可从 https://hexo.fluid-dev.com/docs/icon/ 查找，`class` 代表图标的 css class，添加 `qrcode` 后，图标不再是链接而是悬浮二维码
   # More icons can be found from https://hexo.fluid-dev.com/docs/en/icon/  `class` is the css class of the icon. If adding `qrcode`, The icon is no longer a link, but a hovering QR code
   icons:
