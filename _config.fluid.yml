@@ -396,9 +396,7 @@ footer:
   # 页脚第一行文字的 HTML，建议保留 Fluid 的链接，用于向更多人推广本主题
   # HTML of the first line of the footer, it is recommended to keep the Fluid link to promote this theme to more people
   content: '
-    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-    <i class="iconfont icon-love"></i>
-    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+    
   '
 
   # 展示网站的 PV、UV 统计数
@@ -488,7 +486,7 @@ index:
   # 打开文章的标签方式
   # The browser tag to open the post
   # Available: _blank | _self
-  post_url_target: _blank
+  post_url_target: _self
 
   # 是否显示文章信息（时间、分类、标签）
   # Meta information of post
@@ -510,7 +508,7 @@ index:
 #---------------------------
 post:
   banner_img: /cold_img/default.png
-  banner_img_height: 50
+  banner_img_height: 30
   banner_mask_alpha: 0.5
 
   # 文章在首页的默认封面图，当没有指定 index_img 时会使用该图片，若两者都为空则不显示任何图片
@@ -591,7 +589,7 @@ post:
   # 版权声明，会显示在每篇文章的结尾
   # Copyright, will be displayed at the end of each post
   copyright:
-    enable: true
+    enable: false
     content: '本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！'
 
   # 文章底部上一篇下一篇功能
@@ -823,7 +821,7 @@ category:
   # 分类的排序字段，前面带减号是倒序，不带减号是正序
   # Sort field for categories, with a minus sign is reverse order
   # Options: length | name
-  order_by: "-length"
+  order_by: "name"
 
   # 层级的折叠深度，0 是全部折叠，大于 0 后如果存在子分类则默认展开
   # Collapse depth. If 0, all posts collapsed. If greater than 0, it will be expanded by default if there are subcategories
@@ -846,7 +844,7 @@ category:
 tag:
   enable: true
   banner_img: /cold_img/default.png
-  banner_img_height: 80
+  banner_img_height: 60
   banner_mask_alpha: 0.3
   subtitle:
   tagcloud:
