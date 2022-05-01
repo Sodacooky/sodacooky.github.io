@@ -339,15 +339,16 @@
   <div class="disqus" style="width:100%">
     <div id="disqus_thread"></div>
     
-      <script>
+      <script type="text/javascript">
+        var disqus_config = function() {
+          this.page.url = 'https://blog.sodacooky.plus/2022/%E5%9F%BA%E4%BA%8EHEXO%E5%9C%A8GITHUB-PAGE%E5%BB%BA%E7%AB%8B%E7%AE%80%E5%8D%95%E5%8D%9A%E5%AE%A2/';
+          this.page.identifier = '/2022/%E5%9F%BA%E4%BA%8EHEXO%E5%9C%A8GITHUB-PAGE%E5%BB%BA%E7%AB%8B%E7%AE%80%E5%8D%95%E5%8D%9A%E5%AE%A2/';
+        };
         Fluid.utils.loadComments('#disqus_thread', function() {
-          Fluid.utils.createCssLink('https://cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css');
-          Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', function() {
-            new DisqusJS({
-              shortname: 'sodacooky',
-              apikey: 'nm58qygPcwyanK3G4oNEaFzkDjOr4xK0tFT2HvePcV1arGBCyW2oveNjwXxzpdwI'
-            });
-          });
+          var d = document, s = d.createElement('script');
+          s.src = '//' + 'sodacooky' + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', new Date());
+          (d.head || d.body).appendChild(s);
         });
       </script>
     
