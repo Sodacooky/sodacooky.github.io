@@ -569,7 +569,7 @@ post:
 
     # 描述文字
     # Descriptive text before date
-    content: 本文最后更新于：
+    content: 最后更新于：
 
     # 是否使用相对时间表示，比如："3 天前"
     # If true, it will be a relative time, such as: "3 days ago"
@@ -688,7 +688,6 @@ disqus:
   # See: https://github.com/SukkaW/DisqusJS
   disqusjs: true
   apikey: xHmHsIHiGAtmMqf9A0VodNjxHhwWlfnDra4nmsIKeKG2DrVUrjVXt9u6dL7GoyfV
-  api: https://disqus.skk.moe/disqus/
 
 # Gitalk
 # 基于 GitHub Issues
@@ -805,7 +804,7 @@ archive:
   banner_img: /cold_img/default.jpg
   banner_img_height: 60
   banner_mask_alpha: 0.3
-  subtitle:
+  subtitle: 在这里查看历史发布过的文章...
 
 
 #---------------------------
