@@ -345,15 +345,16 @@
   <div class="disqus" style="width:100%">
     <div id="disqus_thread"></div>
     
-      <script>
+      <script type="text/javascript">
+        var disqus_config = function() {
+          this.page.url = 'https://blog.sodacooky.plus/2021/Linux-Debian-%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BD%BF%E7%94%A8Docker%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BAWordPress%E6%9C%8D%E5%8A%A1%E5%99%A8/';
+          this.page.identifier = '/2021/Linux-Debian-%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BD%BF%E7%94%A8Docker%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BAWordPress%E6%9C%8D%E5%8A%A1%E5%99%A8/';
+        };
         Fluid.utils.loadComments('#disqus_thread', function() {
-          Fluid.utils.createCssLink('https://cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css');
-          Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js', function() {
-            new DisqusJS({
-              shortname: 'sodacooky',
-              apikey: 'xHmHsIHiGAtmMqf9A0VodNjxHhwWlfnDra4nmsIKeKG2DrVUrjVXt9u6dL7GoyfV'
-            });
-          });
+          var d = document, s = d.createElement('script');
+          s.src = '//' + 'sodacooky' + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', new Date());
+          (d.head || d.body).appendChild(s);
         });
       </script>
     
