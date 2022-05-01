@@ -687,7 +687,7 @@ disqus:
   # The following are Disqusjs configurations, please ignore if DisqusJS is not required
   # See: https://github.com/SukkaW/DisqusJS
   disqusjs: true
-  apikey: xHmHsIHiGAtmMqf9A0VodNjxHhwWlfnDra4nmsIKeKG2DrVUrjVXt9u6dL7GoyfV
+  apikey: nm58qygPcwyanK3G4oNEaFzkDjOr4xK0tFT2HvePcV1arGBCyW2oveNjwXxzpdwI
 
 # Gitalk
 # 基于 GitHub Issues
