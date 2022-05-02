@@ -4,7 +4,7 @@
   <!-- 元数据 -->
   <meta charset="utf-8">
   <link rel="icon" href="/images/earth.jpg">
-  <title>Sodacooky's Blog</title>
+  <title>Linux安装使用各种包管理器没有的版本的JDK | Sodacooky's Blog</title>
   <meta name="author" content="Sodacooky" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -13,16 +13,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <meta name="format-detection" content="telphone=no, email=no" />
   
-    <meta name="keywords" content="Sodacooky" />
+    <meta name="keywords" content="Java, Linux" />
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Sodacooky&#39;s Blog">
-<meta property="og:url" content="https://blog.sodacooky.plus/tags/JetBrains/index.html">
+  <meta name="description" content="下载你需要的版本的JDK网上有许多预编译的OpenJDK，我选择的是Adoptium的Temurin。 文件可以解压到任何稳定安全的文件夹中，但是建议放在&#x2F;usr&#x2F;lib&#x2F;jvm&#x2F;，因为包管理器的JDK也是放到这里。 解压好的目录像这样： 12345678&#x2F;usr&#x2F;lib&#x2F;jvm&#x2F;└── jdk8u322    ├── bin    ├── include    ├── jre    ├── li">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux安装使用各种包管理器没有的版本的JDK">
+<meta property="og:url" content="https://blog.sodacooky.plus/2022/Linux%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E5%90%84%E7%A7%8D%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8%E6%B2%A1%E6%9C%89%E7%9A%84%E7%89%88%E6%9C%AC%E7%9A%84JDK/index.html">
 <meta property="og:site_name" content="Sodacooky&#39;s Blog">
+<meta property="og:description" content="下载你需要的版本的JDK网上有许多预编译的OpenJDK，我选择的是Adoptium的Temurin。 文件可以解压到任何稳定安全的文件夹中，但是建议放在&#x2F;usr&#x2F;lib&#x2F;jvm&#x2F;，因为包管理器的JDK也是放到这里。 解压好的目录像这样： 12345678&#x2F;usr&#x2F;lib&#x2F;jvm&#x2F;└── jdk8u322    ├── bin    ├── include    ├── jre    ├── li">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog.sodacooky.plus/images/earth.jpg">
+<meta property="article:published_time" content="2022-05-02T17:45:00.000Z">
+<meta property="article:modified_time" content="2022-05-02T17:43:28.062Z">
 <meta property="article:author" content="Sodacooky">
-<meta property="article:tag" content="Sodacooky">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://blog.sodacooky.plus/images/earth.jpg">
 <meta name="twitter:site" content="@Sodacooky">
@@ -126,8 +131,6 @@
 <section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
     <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
     
-        <div class="sticky-area">
-    
     
                 <aside id="krw-about" class="widget widget-kratos-about clearfix">
     <div class="photo-background"></div>
@@ -167,6 +170,8 @@
     </div>
 </aside>
             
+                    <div class="sticky-area">
+                
                 
   <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
     <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
@@ -230,84 +235,85 @@
 
         
 
-            <!-- Breadcrumb for tag & category page -->
-
-    <article class="kratos-hentry kratos-entry-border-new clearfix">
-        <div class="kratos-breadcrumb">
-            <a href="/">
-                <i class="fa fa-home"></i>
-            </a>
-            <i class="fa fa-angle-right"></i>
-            
-                <a href="/tags/">
-                    标签
-                </a>
-                <i class="fa fa-angle-right"></i>
-                <a href="/tags/JetBrains">
-                    JetBrains
-                </a>
-            
-            
-        </div>
-    </article>
-
-
-
-
+            <article itemscope itemtype="https://schema.org/Article">
     
-    
-        <article class="kratos-hentry clearfix" itemscope itemtype="https://schema.org/Article">
-            <div class="kratos-entry-border-new clearfix">
+    <link itemprop="mainEntityOfPage" href="https://blog.sodacooky.plus/2022/Linux%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E5%90%84%E7%A7%8D%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8%E6%B2%A1%E6%9C%89%E7%9A%84%E7%89%88%E6%9C%AC%E7%9A%84JDK/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">Linux安装使用各种包管理器没有的版本的JDK</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2022-05-02T17:45:00.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2022-05-03</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">Sodacooky</span>
+                </li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        550
+                    
+                    字
+                </li>
                 
-                <div class="kratos-entry-thumb-new">
-                    <a href="/2022/%E9%A3%9E%E6%9C%BA%E8%84%91%E8%A2%8B%E5%85%A8%E5%AE%B6%E6%A1%B6%E8%AF%84%E6%B5%8B%E6%96%B9%E6%B3%95/">
-                        
-                            <img class="kratos-entry-thumb-new-img">
-                        
-                    </a>
-                </div>
-                <div class="kratos-post-inner-new">
-                    <header class="kratos-entry-header-new">
-                            <a class="label-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
-                        <h2 class="kratos-entry-title-new"><a href="/2022/%E9%A3%9E%E6%9C%BA%E8%84%91%E8%A2%8B%E5%85%A8%E5%AE%B6%E6%A1%B6%E8%AF%84%E6%B5%8B%E6%96%B9%E6%B3%95/" itemprop="mainEntityOfPage"><span itemprop="name headline">飞机脑袋全家桶评测方法</span></a>
-                    </header>
-                    <div class="kratos-entry-content-new">
-                        <p itemProp="description">
-                            
-                                使用Eval Reset插件的时代已经被打开必须登录或者Act结束了。
-插件作者本人带来了新的方法：Java Agent
-下载ja-netfilter前往神奇的网站，在网页顶部下载一份额外为飞机脑袋全家准备的ja-netfilter。...
-                            
-                        </p>
-                    </div>
-                </div>
-                <footer class="kratos-post-meta-new">
-                    <span class="pull-left">
-                        <time datetime="2022-04-30T09:23:04.000Z" itemprop="datePublished">
-                            <a><i class="fa fa-calendar"></i> 2022-04-30</a>
-                        </time>
-                        <a>
-                            
-                                <i class="fa fa-tags"></i>
-                                <a class="tag-none-link" href="/tags/JetBrains/" rel="tag">JetBrains</a>
-                            
-                        </a>
-                        
-                        
-                    </span>
-                    <span class="pull-right">
-                        <a class="read-more" href="/2022/%E9%A3%9E%E6%9C%BA%E8%84%91%E8%A2%8B%E5%85%A8%E5%AE%B6%E6%A1%B6%E8%AF%84%E6%B5%8B%E6%96%B9%E6%B3%95/" title="阅读全文">阅读全文<i class="fa fa-chevron-circle-right"></i></a>
-                    </span>
-                </footer>
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1651513408062"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
-        </article>
+            
+            <hr />
+            <div itemprop="articleBody"><h2 id="下载你需要的版本的JDK"><a href="#下载你需要的版本的JDK" class="headerlink" title="下载你需要的版本的JDK"></a>下载你需要的版本的JDK</h2><p>网上有许多预编译的OpenJDK，我选择的是<a target="_blank" rel="noopener" href="https://adoptium.net/">Adoptium</a>的Temurin。</p>
+<p>文件可以解压到任何稳定安全的文件夹中，但是建议放在<code>/usr/lib/jvm/</code>，因为包管理器的JDK也是放到这里。</p>
+<p>解压好的目录像这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/usr/lib/jvm/</span><br><span class="line">└── jdk8u322</span><br><span class="line">    ├── bin</span><br><span class="line">    ├── include</span><br><span class="line">    ├── jre</span><br><span class="line">    ├── lib</span><br><span class="line">    ├── man</span><br><span class="line">    └── sample</span><br></pre></td></tr></table></figure>
+
+<p>反正能访问到就行。</p>
+<h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><p>只介绍永久生效的配制方法。</p>
+<p>在文件<code>/etc/profile</code>的末尾添加：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/usr/lib/jvm/jdk8u322/</span><br><span class="line">export JRE_HOME=$JAVA_HOME/jre</span><br><span class="line">export CLASSPATH=.:$CLASSPATH:$JAVA_HOME/lib:$JRE_HOME/lib</span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin</span><br></pre></td></tr></table></figure>
+
+<p>根据你的实际情况修改路径。</p>
+<p>保存文件后，还需要重新加载才能生效，使用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
+<p>即可。</p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>使用这种方法安装JDK，你最好卸载掉包管理器中的版本。</p>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/Java/" rel="tag">Java</a>, <a class="tag-none-link" href="/tags/Linux/" rel="tag">Linux</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2022-05-02T17:43:28.062Z" itemprop="dateModified">最后编辑：2022-05-03</time>
+                </div>
+            </div>
+        </footer>
+    </div>
     
-
-
-
-
-
-
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" 基于HEXO在GITHUB PAGE建立简单博客" href="/2022/基于HEXO在GITHUB-PAGE建立简单博客/">&lt; 上一篇</a>
+            </div>
+            
+            
+        </nav>
+    
+    
+</article>
 
         
 
