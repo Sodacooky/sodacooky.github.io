@@ -23,14 +23,22 @@ index:
 
 # Top Menu 顶部导航栏配置 （具体格式请参照文档）
 menu:
-  index: /
-  archives: /archives/
   about: /about/
+  archives: /archives/
+  tools:
+    submenu: true
+    ipip: https://www.ipip.net/
+    ghproxy: https://ghproxy.com/
+    imgurl: https://www.imgurl.org/
 
 label:
-  index: <i class="fa fa-home"></i>首页
-  archives: <i class="fa fa-th"></i>历史
   about: <i class="fa fa-user"></i>关于
+  archives: <i class="fa fa-database"></i>历史文章
+  tools: 
+    submenu: <i class="fa fa-wrench"></i>常用工具
+    ipip: IPIP.NET
+    ghproxy: Github Proxy
+    imgurl: ImgURL
 
 # Footer 页脚配置
 group_link: 

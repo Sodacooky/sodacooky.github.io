@@ -1,6 +1,6 @@
 title: Sodacooky's Blog
 subtitle: ''
-description: ''
+description: '梦想是做车万同人游戏的一般WEB搬砖社畜'
 keywords: Sodacooky
 author: Sodacooky
 language: zh-CN
@@ -65,9 +65,3 @@ deploy:
   repo: https://github.com/Sodacooky/sodacooky.github.io
   branch: gh-pages
   message: deploying
-lazyload:
-  enable: true
-  onlypost: false # optional
-  loadingImg: # optional eg ./images/loading.gif
-  isSPA: false # optional
-  preloadRatio: 3 # optional, default is 1
