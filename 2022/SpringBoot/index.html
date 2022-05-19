@@ -4,7 +4,7 @@
   <!-- 元数据 -->
   <meta charset="utf-8">
   <link rel="icon" href="https://avatars.githubusercontent.com/u/20016889">
-  <title>基于HEXO在GITHUB PAGE建立简单博客 | Sodacooky's Blog</title>
+  <title>SpringBoot笔记 | Sodacooky's Blog</title>
   <meta name="author" content="Sodacooky" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -13,22 +13,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <meta name="format-detection" content="telphone=no, email=no" />
   
-    <meta name="keywords" content="Github, HEXO, 博客" />
+    <meta name="keywords" content="Spring, SpringBoot, 笔记" />
   
-  <meta name="description" content="前言如果你不想折腾，那么托管WordPress是最好的选择。 HEXO不止可以部署到Github Pages，因为其本质是通过Markdown生成静态页面，所以任何你想到的网页容器都行。 WordPress虽然一站式解决，但是安装很麻烦，故我选择了HEXO。 环境HEXO基于Node.js，建议使用nvm（或nvm-windows）安装，方便管理各种版本的node.js。 在nvm中安装管理nod">
+  <meta name="description" content="原理依赖 Maven包含了SpringBoot的各种依赖用户只需要引入启动器(spring-boot-starter-xxx)，版本被依赖管理（父项目）当然，不能这样引入的、偏僻的包也可以用老方法引入  自动配置 @SpringBootApplication@SpringBootApplication该注解将类注册为Bean并标注为SpringBoot应用（启动类）   其内main方法内的Spr">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基于HEXO在GITHUB PAGE建立简单博客">
-<meta property="og:url" content="https://blog.sodacooky.plus/2022/%E5%9F%BA%E4%BA%8EHEXO%E5%9C%A8GITHUB-PAGE%E5%BB%BA%E7%AB%8B%E7%AE%80%E5%8D%95%E5%8D%9A%E5%AE%A2/index.html">
+<meta property="og:title" content="SpringBoot笔记">
+<meta property="og:url" content="https://blog.sodacooky.plus/2022/SpringBoot/index.html">
 <meta property="og:site_name" content="Sodacooky&#39;s Blog">
-<meta property="og:description" content="前言如果你不想折腾，那么托管WordPress是最好的选择。 HEXO不止可以部署到Github Pages，因为其本质是通过Markdown生成静态页面，所以任何你想到的网页容器都行。 WordPress虽然一站式解决，但是安装很麻烦，故我选择了HEXO。 环境HEXO基于Node.js，建议使用nvm（或nvm-windows）安装，方便管理各种版本的node.js。 在nvm中安装管理nod">
+<meta property="og:description" content="原理依赖 Maven包含了SpringBoot的各种依赖用户只需要引入启动器(spring-boot-starter-xxx)，版本被依赖管理（父项目）当然，不能这样引入的、偏僻的包也可以用老方法引入  自动配置 @SpringBootApplication@SpringBootApplication该注解将类注册为Bean并标注为SpringBoot应用（启动类）   其内main方法内的Spr">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/20016889">
-<meta property="article:published_time" content="2022-04-30T10:04:18.000Z">
-<meta property="article:modified_time" content="2022-04-30T14:52:10.658Z">
+<meta property="article:published_time" content="2022-03-23T09:23:04.000Z">
+<meta property="article:modified_time" content="2022-05-19T09:25:52.340Z">
 <meta property="article:author" content="Sodacooky">
-<meta property="article:tag" content="HEXO">
-<meta property="article:tag" content="博客">
-<meta property="article:tag" content="Github">
+<meta property="article:tag" content="Spring">
+<meta property="article:tag" content="SpringBoot">
+<meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/20016889">
 <meta name="twitter:site" content="@Sodacooky">
@@ -282,15 +282,15 @@
 
             <article itemscope itemtype="https://schema.org/Article">
     
-    <link itemprop="mainEntityOfPage" href="https://blog.sodacooky.plus/2022/%E5%9F%BA%E4%BA%8EHEXO%E5%9C%A8GITHUB-PAGE%E5%BB%BA%E7%AB%8B%E7%AE%80%E5%8D%95%E5%8D%9A%E5%AE%A2/">
+    <link itemprop="mainEntityOfPage" href="https://blog.sodacooky.plus/2022/SpringBoot/">
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
-                <h1 class="kratos-entry-title text-center" itemprop="name headline">基于HEXO在GITHUB PAGE建立简单博客</h1>
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">SpringBoot笔记</h1>
             
             
             <ul class="kratos-post-meta text-center">
-                <li><time datetime="2022-04-30T10:04:18.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2022-04-30</time></li>
+                <li><time datetime="2022-03-23T09:23:04.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2022-03-23</time></li>
                 <li itemprop="author" itemscope itemtype="https://schema.org/Person">
                     <i class="fa fa-user"></i> 作者 <span itemprop="name">Sodacooky</span>
                 </li>
@@ -298,7 +298,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~1.57K
+                        ~3.01K
                     
                     字
                 </li>
@@ -308,52 +308,88 @@
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1651330330658"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1652952352340"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             <hr />
-            <div itemprop="articleBody"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>如果你不想折腾，那么托管WordPress是最好的选择。</p>
-<p>HEXO不止可以部署到Github Pages，因为其本质是通过Markdown生成静态页面，所以任何你想到的网页容器都行。</p>
-<p>WordPress虽然一站式解决，但是安装很麻烦，故我选择了HEXO。</p>
-<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>HEXO基于Node.js，建议使用nvm（或nvm-windows）安装，方便管理各种版本的node.js。</p>
-<p>在nvm中安装管理node.js版本请看别的教程。</p>
-<p>然后安装HEXO：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-
-<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>到达你要放置博客的文件夹，通过</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
-<p>建立博客的“脚手架”，当让也可以</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init new_dir</span><br></pre></td></tr></table></figure>
-<p>创建一个文件夹并建立“脚手架”。</p>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>博客根目录下的_config.yml有博客的基本设置，如标题、主题等。</p>
-<p>详细的配置，还是看<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/configuration">HEXO官方文档</a>比较方便。</p>
-<h2 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h2><p>虽然许多主题作者都开始转向使用npm来分发主题，但这里还是建议手动解压主题文件到themes文件夹。这样一来问题会少一些。</p>
-<p>一般而言，你只需要下载主题压缩包，解压到themes&#x2F;，然后在博客根目录新建或重命名一个_config.主题名称.yml文件，最后更改_config.yml中的theme即可。</p>
-<p>通常_config.主题名称.yml文件是对主题额外的东西的设置。</p>
-<p>热门的主题都有对应的详尽的安装方法。</p>
-<h2 id="撰写"><a href="#撰写" class="headerlink" title="撰写"></a>撰写</h2><p>可以通过</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new post[/draft/page] <span class="string">&#x27;新的标题&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>来创建新的文件，新的文件在博客根目录下的source&#x2F;_posts，你也可以自己创建。</p>
-<p>一个新文件的头部通常是这样的：</p>
-<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: 文章标题</span><br><span class="line">date: 时间，如 2021-08-08 21:27:14</span><br><span class="line">tags: [标签, 标签数组的第二个, 等等等等等等]</span><br><span class="line">categories: [分类, 子分类]</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-
-<h2 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h2><p>这里只介绍使用GITHUB PAGES的方法，即HEXO文档中的<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/one-command-deployment#Git">Git部署</a>方法。</p>
-<p>需要安装依赖：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+            <div itemprop="articleBody"><h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><ul>
+<li>Maven包含了SpringBoot的各种依赖<br>用户只需要引入启动器(<a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.build-systems.starters">spring-boot-starter-xxx</a>)，版本被依赖管理（父项目）<br>当然，不能这样引入的、偏僻的包也可以用老方法引入</li>
+</ul>
+<h2 id="自动配置-SpringBootApplication"><a href="#自动配置-SpringBootApplication" class="headerlink" title="自动配置 @SpringBootApplication"></a>自动配置 @SpringBootApplication</h2><h4 id="SpringBootApplication"><a href="#SpringBootApplication" class="headerlink" title="@SpringBootApplication"></a>@SpringBootApplication</h4><p>该注解将类注册为Bean并标注为SpringBoot应用（启动类）  </p>
+<h4 id="其内main方法内的SpringApplication-run-启动类-class-args-将该应用启动"><a href="#其内main方法内的SpringApplication-run-启动类-class-args-将该应用启动" class="headerlink" title="其内main方法内的SpringApplication.run(启动类.class,args)将该应用启动"></a>其内main方法内的SpringApplication.run(启动类.class,args)将该应用启动</h4><ol>
+<li>推断程序是否为Web项目，设置监听器，设置main方法定义类（设置主类）</li>
+<li>获取配置参数(核心配置文件、banner.txt等)</li>
+<li>配置上下文、装配Bean等<h4 id="SpringBootConfiguration"><a href="#SpringBootConfiguration" class="headerlink" title="@SpringBootConfiguration"></a>@SpringBootConfiguration</h4>SpringBoot配置，是@Configuration修饰的@Component的组件<h4 id="EnableAutoConfiguration"><a href="#EnableAutoConfiguration" class="headerlink" title="@EnableAutoConfiguration"></a>@EnableAutoConfiguration</h4>自动配置，将启动类下的所有包的东西导入</li>
+</ol>
+<ul>
+<li>@AutoConfigurationPackage<br>通过@Import({Registrar.class})，<br>将@SpringBootApplication注解的主程序类所在包及其子包下的“组件”扫描注册到Spring容器。</li>
+<li>@Import({AutoConfigurationImportSelector.class})<br>查找classpath中所有jar包的META-INF&#x2F;spring.factories进行加载，选择性地将配置信息交给Spring容器进行创建。<h4 id="总而言之"><a href="#总而言之" class="headerlink" title="总而言之"></a>总而言之</h4>@SpringBootApplication注解让Spring在启动时自动将maven导入了的starter（各种模块）加载，也把启动类目录之下的所有东西加载。</li>
+</ul>
+<hr>
+<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><h2 id="创建工程"><a href="#创建工程" class="headerlink" title="创建工程"></a>创建工程</h2><ul>
+<li>官网Spring Initilizer</li>
+<li>IDEA内置Spring Initilizer</li>
+<li>需要勾选组件SpringWeb（内嵌Tomcat等）<br>通常还需要commons-io与commons-fileupload包</li>
+</ul>
+<h2 id="application-properties-x2F-yml"><a href="#application-properties-x2F-yml" class="headerlink" title="application.properties&#x2F;yml"></a>application.properties&#x2F;yml</h2><p><em>SpringBoot的核心配置文件</em></p>
+<h4 id="常用配置"><a href="#常用配置" class="headerlink" title="常用配置"></a>常用配置</h4><ul>
+<li>server.port&#x3D;容器端口号<br>或yml<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">    <span class="attr">port:</span> <span class="string">端口号</span></span><br></pre></td></tr></table></figure>
+<h4 id="YAML语法-一定记得空格"><a href="#YAML语法-一定记得空格" class="headerlink" title="YAML语法 一定记得空格"></a>YAML语法 <em>一定记得空格</em></h4></li>
+<li>普通KV<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">key:</span> <span class="string">value</span></span><br></pre></td></tr></table></figure></li>
+<li>对象<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">object:</span></span><br><span class="line">    <span class="attr">key:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">kkey:</span> <span class="number">2022</span><span class="string">/01/01</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">object:</span> &#123;<span class="attr">key:</span> <span class="number">1</span>, <span class="attr">kkey:</span> <span class="number">14514</span>&#125;</span><br></pre></td></tr></table></figure></li>
+<li>数组<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#行内</span></span><br><span class="line"><span class="attr">object:</span> [<span class="string">阿黄</span>, <span class="string">阿龙</span>]</span><br><span class="line"><span class="comment">#多行</span></span><br><span class="line"><span class="attr">object:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">value</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">vvalue</span></span><br></pre></td></tr></table></figure>
+<h4 id="YAML能直接给实体类赋值（注入）"><a href="#YAML能直接给实体类赋值（注入）" class="headerlink" title="YAML能直接给实体类赋值（注入）"></a>YAML能直接给实体类赋值（注入）</h4></li>
+</ul>
+<p><em>类似于XML配置文件注入或@Value</em></p>
+<ol>
+<li>在配置文件中按上述类的语法写好</li>
+<li>要注入的类加上注解@ConfiguratrionProperties(prefix&#x3D;”配置文件中的对象名”)</li>
+</ol>
+<ul>
+<li><del>加载指定配置文件</del><br>@PropertySource(“classpath:xxx”)<br>@Value(“${key}”)</li>
+</ul>
+<h4 id="多配置"><a href="#多配置" class="headerlink" title="多配置"></a>多配置</h4><ul>
+<li>多文件<ol>
+<li>可以在SpringBoot支持的目录下，保存各种名为application-xxx.yml文件</li>
+<li>在默认的，最高优先级的配置文件中通过spring.profiles.active指定上面的xxx</li>
+</ol>
+</li>
+<li>单文件<ol>
+<li>在默认位置的配置文件中，用三个横杠<code>---</code>分割各个配置<br><del>不同的配置中，spring.profiles来命名</del>  </li>
+<li>不同配置使用:  <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">    <span class="attr">config:</span></span><br><span class="line">        <span class="attr">activate:</span></span><br><span class="line">        <span class="attr">on-profile:</span> <span class="string">xxx</span></span><br></pre></td></tr></table></figure>
+命名区分  </li>
+<li>选择方式同多文件，卸载没有命名的、默认的配置中</li>
+</ol>
+</li>
+</ul>
+<h4 id="更换banner"><a href="#更换banner" class="headerlink" title="更换banner"></a>更换banner</h4><p>resources目录下的banner.txt</p>
+<h4 id="静态资源"><a href="#静态资源" class="headerlink" title="静态资源"></a>静态资源</h4><p>默认没有配置则按：classpath:resources &gt; classpath:static &gt; classpath:public 顺序<br>配置方法为spring.web.resources.static-locations: file:xxxx<br>静态资源映射为spring.mvc.static-path-pattern&#x3D;URL格式，如&#x2F;res&#x2F;**则&#x2F;res&#x2F;img.jpg访问  </p>
 <blockquote>
-<p>–save、-S参数意思是把模块的版本信息保存到dependencies（生产环境依赖）中，即你的package.json文件的dependencies字段中</p>
+<p>  放在templates目录下的，在模板引擎的支持下只能通过Controller的View进入，类似WEB-INF</p>
 </blockquote>
-<p>然后编辑_config.yml，找到deploy项，改成如下：</p>
-<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: &#x27;git&#x27;</span><br><span class="line">  repo: 你的github网页地址，是浏览器中的，如https://github.com/Sodacooky/sodacooky.github.io</span><br><span class="line">  branch: gh-pages</span><br><span class="line">  message: deploying</span><br></pre></td></tr></table></figure>
+<h4 id="SSL"><a href="#SSL" class="headerlink" title="SSL"></a>SSL</h4><p>SpringBoot内置Tomcat只支持jks和pkcs12格式的密钥<br>转换方式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl pkcs12 -export -in xxx.pem/cer -inkey xxx.pem/key -out xxx.p12</span><br></pre></td></tr></table></figure>
+<p>配置</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">ssl:</span></span><br><span class="line">    <span class="attr">key-store:</span> <span class="string">密钥文件路径</span></span><br><span class="line">    <span class="attr">key-store-type:</span> <span class="string">pkcs12/jks</span></span><br><span class="line">    <span class="attr">key-store-password:</span> <span class="string">创建或转换时输入的口令</span></span><br></pre></td></tr></table></figure>
 
-<p>其中，branch为push的分支，【一定】不要是本来存放博客内容的“脚手架”的分支，deploy将会把并且只会把编译（生成）好的前端静态页面push到这个分支。</p>
-<p>还要在Github仓库中，在Settings -&gt; Pages -&gt; Source中把Branch改为你上面设置的分支。</p>
-<p>最后，在你通过<code>hexo new</code>创建文件，<code>hexo clean</code>清理生成缓存（可选），<code>hexo generate</code>生成静态文件后，你就可以</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
-<p>将更新部署到Github，等待一下就生效。</p>
-<h2 id="CNAME"><a href="#CNAME" class="headerlink" title="CNAME"></a>CNAME</h2><p>就在上面设置分支时，你会看到一个Custom domain，如果你直接在那里添加，只会在远程仓库中的指定分支中创建一个CNAME文件，下次push就会失效。</p>
-<p>你应该在博客根目录的source文件夹中，放入这个CNAME文件，内容是你的域名。</p>
-<p>记得先在DNS添加CNAME记录。</p>
+<h4 id="首页与图标定制-类似welcome-page"><a href="#首页与图标定制-类似welcome-page" class="headerlink" title="首页与图标定制(类似welcome-page)"></a>首页与图标定制(类似welcome-page)</h4><ul>
+<li>首页index.html默认能放在上述的静态资源目录中</li>
+<li>网站图标favicon.ico放在静态资源目录下(旧版本还需spring.mvc.favicon.enabled&#x3D;false</li>
+</ul>
+<hr>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h4 id="数据校验-JSR303"><a href="#数据校验-JSR303" class="headerlink" title="数据校验 JSR303"></a>数据校验 JSR303</h4><ul>
+<li>通常对POJO类使用，限制数据的内容。如限制为邮箱或符合某正则表达式的字符串。</li>
+<li>如@NotNull, @Size, @Pattern等</li>
+</ul>
+<h4 id="认证"><a href="#认证" class="headerlink" title="认证"></a>认证</h4><p><strong>SpringSecurity方式</strong><br>需要导入依赖 spring-boot-starter-security  </p>
+<ol>
+<li>编写类继承WebSecurityConfigurerAdapter并@EnableWebSecurity</li>
+<li>配置页面权限<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">configure</span><span class="params">(HttpSecurity http)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    http.authorizeRequests()</span><br><span class="line">    .antMatchers(<span class="string">&quot;请求名称&quot;</span>)</span><br><span class="line">    .hasRole(<span class="string">&quot;需要的角色名&quot;</span>);</span><br><span class="line">    http.formLogin();<span class="comment">//启用框架自带登录页面</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+即配置了那些页面请求需要登录，并在没登录的时候跳转到一个登录界面。</li>
+<li>配置角色<br>内存中用户角色：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">configure</span><span class="params">(AuthenticationManagerBuilder auth)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    auth.inMemoryAuthentication()</span><br><span class="line">    .withUser(<span class="string">&quot;username&quot;</span>)</span><br><span class="line">    .password(<span class="string">&quot;114514&quot;</span>)</span><br><span class="line">    .roles(<span class="string">&quot;private_user&quot;</span>);<span class="comment">//.and()....</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+密码编码：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.passwordEncoder(<span class="keyword">new</span> <span class="title class_">xxxPasswordEncoder</span>())</span><br></pre></td></tr></table></figure></li>
+</ol>
 </div>
         </div>
         
@@ -366,10 +402,10 @@
             <div class="footer-tag clearfix">
                 <div class="pull-left">
                 <i class="fa fa-tags"></i>
-                    <a class="tag-none-link" href="/tags/Github/" rel="tag">Github</a>, <a class="tag-none-link" href="/tags/HEXO/" rel="tag">HEXO</a>, <a class="tag-none-link" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a>
+                    <a class="tag-none-link" href="/tags/Spring/" rel="tag">Spring</a>, <a class="tag-none-link" href="/tags/SpringBoot/" rel="tag">SpringBoot</a>, <a class="tag-none-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2022-04-30T14:52:10.658Z" itemprop="dateModified">最后编辑：2022-04-30</time>
+                    <time datetime="2022-05-19T09:25:52.340Z" itemprop="dateModified">最后编辑：2022-05-19</time>
                 </div>
             </div>
         </footer>
@@ -378,12 +414,12 @@
         <nav class="navigation post-navigation clearfix" role="navigation">
             
             <div class="nav-previous clearfix">
-                <a title=" 飞机脑袋全家桶评测方法" href="/2022/飞机脑袋全家桶评测方法/">&lt; 上一篇</a>
+                <a title=" SpringMVC笔记" href="/2022/SpringMVC/">&lt; 上一篇</a>
             </div>
             
             
             <div class="nav-next clearfix">
-                <a title=" Linux安装使用各种包管理器没有的版本的JDK" href="/2022/Linux安装使用各种包管理器没有的版本的JDK/">下一篇 &gt;</a>
+                <a title=" 飞机脑袋全家桶评测方法" href="/2022/飞机脑袋全家桶评测方法/">下一篇 &gt;</a>
             </div>
             
         </nav>

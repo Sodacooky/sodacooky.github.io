@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/20016889">
+  <title>SpringFramework笔记 | Sodacooky's Blog</title>
+  <meta name="author" content="Sodacooky" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="Spring, 笔记" />
+  
+  <meta name="description" content="IOCXML方式定义Bean1&lt;bean id&#x3D;&quot;指定名称&quot; class&#x3D;&quot;类名全路径com.xxx.xx&quot; scope&#x3D;&quot;singl&#x2F;proto&quot;&#x2F;&gt; 注入参数 构造函数注入如果不使用此种方法，bean必须有无参数构造函数  1&lt;constructor-arg name&#x3D;&quot;参数名&quot; value&#x3D;&amp;q">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringFramework笔记">
+<meta property="og:url" content="https://blog.sodacooky.plus/2022/SpringCore/index.html">
+<meta property="og:site_name" content="Sodacooky&#39;s Blog">
+<meta property="og:description" content="IOCXML方式定义Bean1&lt;bean id&#x3D;&quot;指定名称&quot; class&#x3D;&quot;类名全路径com.xxx.xx&quot; scope&#x3D;&quot;singl&#x2F;proto&quot;&#x2F;&gt; 注入参数 构造函数注入如果不使用此种方法，bean必须有无参数构造函数  1&lt;constructor-arg name&#x3D;&quot;参数名&quot; value&#x3D;&amp;q">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://avatars.githubusercontent.com/u/20016889">
+<meta property="article:published_time" content="2022-03-04T09:23:04.000Z">
+<meta property="article:modified_time" content="2022-05-19T09:25:44.674Z">
+<meta property="article:author" content="Sodacooky">
+<meta property="article:tag" content="Spring">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://avatars.githubusercontent.com/u/20016889">
+<meta name="twitter:site" content="@Sodacooky">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" type="text/css" media="all">
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-color-dark.min.css" type="text/css" media="(prefers-color-scheme: dark)">
+    <script src="/js/kr-dark.min.js"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night.min.css" type="text/css" media="all">
+  
+  
+  <link rel="stylesheet" id="fontawe-css" href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="nprogress-css" href="https://unpkg.com/nprogress@0.2.0/nprogress.css" type="text/css" media="all">
+  
+  
+  
+  
+    <link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.jpg');
+      }
+    
+    
+  </style>
+  
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                        <li><a href="/about/"><i class="fa fa-user"></i>关于</a></li>
+                                    
+                                
+                                    
+                                        <li><a href="/archives/"><i class="fa fa-database"></i>历史文章</a></li>
+                                    
+                                
+                                    
+                                        <li>
+                                            <a><i class="fa fa-wrench"></i>常用工具</a>
+                                            <ul class="sub-menu">
+                                                
+                                                    
+                                                
+                                                    
+                                                        <li><a target="_blank" rel="noopener" href="https://www.ipip.net/">IPIP.NET</a></li>
+                                                    
+                                                
+                                                    
+                                                        <li><a target="_blank" rel="noopener" href="https://ghproxy.com/">Github Proxy</a></li>
+                                                    
+                                                
+                                                    
+                                                        <li><a target="_blank" rel="noopener" href="https://www.imgurl.org/">ImgURL</a></li>
+                                                    
+                                                
+                                            </ul>
+                                        </li>
+                                    
+                                
+                                    
+                                        <li>
+                                            <a><i class="fa fa-bath"></i>伙伴</a>
+                                            <ul class="sub-menu">
+                                                
+                                                    
+                                                
+                                                    
+                                                        <li><a href="/">虚位以待</a></li>
+                                                    
+                                                
+                                            </ul>
+                                        </li>
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Sodacooky&#39;s Blog</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Sodacooky&#39;s Blog</h2> <br />
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+                        
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="https://avatars.githubusercontent.com/u/20016889" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center">梦想是做车万同人游戏的一般WEB搬砖社畜</p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                7
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                1
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                12
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a><span class="category-list-count">7</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/Docker/" style="font-size: 0.6em;">Docker</a> <a href="/tags/Github/" style="font-size: 0.6em;">Github</a> <a href="/tags/HEXO/" style="font-size: 0.6em;">HEXO</a> <a href="/tags/Java/" style="font-size: 0.6em;">Java</a> <a href="/tags/JetBrains/" style="font-size: 0.6em;">JetBrains</a> <a href="/tags/Linux/" style="font-size: 0.7em;">Linux</a> <a href="/tags/Spring/" style="font-size: 0.8em;">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 0.6em;">SpringBoot</a> <a href="/tags/WordPress/" style="font-size: 0.6em;">WordPress</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 0.6em;">博客</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 0.6em;">服务器</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 0.8em;">笔记</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2022/Linux%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E5%90%84%E7%A7%8D%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8%E6%B2%A1%E6%9C%89%E7%9A%84%E7%89%88%E6%9C%AC%E7%9A%84JDK/"><i class="fa  fa-book"></i> Linux安装使用各种包管理器没有的版本的JDK</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/%E5%9F%BA%E4%BA%8EHEXO%E5%9C%A8GITHUB-PAGE%E5%BB%BA%E7%AB%8B%E7%AE%80%E5%8D%95%E5%8D%9A%E5%AE%A2/"><i class="fa  fa-book"></i> 基于HEXO在GITHUB PAGE建立简单博客</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/%E9%A3%9E%E6%9C%BA%E8%84%91%E8%A2%8B%E5%85%A8%E5%AE%B6%E6%A1%B6%E8%AF%84%E6%B5%8B%E6%96%B9%E6%B3%95/"><i class="fa  fa-book"></i> 飞机脑袋全家桶评测方法</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/SpringBoot/"><i class="fa  fa-book"></i> SpringBoot笔记</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/SpringMVC/"><i class="fa  fa-book"></i> SpringMVC笔记</a>
+            
+          
+        
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="https://blog.sodacooky.plus/2022/SpringCore/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">SpringFramework笔记</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2022-03-04T09:23:04.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2022-03-04</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">Sodacooky</span>
+                </li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~4.10K
+                    
+                    字
+                </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1652952344674"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            <hr />
+            <div itemprop="articleBody"><h1 id="IOC"><a href="#IOC" class="headerlink" title="IOC"></a>IOC</h1><h2 id="XML方式"><a href="#XML方式" class="headerlink" title="XML方式"></a>XML方式</h2><h4 id="定义Bean"><a href="#定义Bean" class="headerlink" title="定义Bean"></a>定义Bean</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;指定名称&quot;</span> <span class="attr">class</span>=<span class="string">&quot;类名全路径com.xxx.xx&quot;</span> <span class="attr">scope</span>=<span class="string">&quot;singl/proto&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="注入参数"><a href="#注入参数" class="headerlink" title="注入参数"></a>注入参数</h4><ul>
+<li>构造函数注入<br>如果不使用此种方法，bean必须有无参数构造函数  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">&quot;参数名&quot;</span> <span class="attr">value</span>=<span class="string">&quot;值&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+若要注入（引用类型）类，则  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">&quot;参数名&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;其他bean的id&quot;</span>/&gt;</span>  </span><br></pre></td></tr></table></figure>
+value&#x2F;ref的区别下同  </li>
+<li>setter注入<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;属性名（setter名转换，遵守Bean规则）&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>注入数组或容器<br>在上述二者内部创建子级，如  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line">	&lt;list或者array或者map或者set&gt;</span><br><span class="line">		<span class="tag">&lt;<span class="name">value</span>&gt;</span>值<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">ref</span> <span class="attr">bean</span>=<span class="string">&quot;&quot;</span>/&gt;</span></span><br><span class="line">	&lt;/list,array,map,set&gt;</span><br><span class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
+也可以使用util，将util注册为bean后使用ref或外部bean注入<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">util:list</span> <span class="attr">id</span>=<span class="string">&quot;&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">value</span>/&gt;</span><span class="tag">&lt;<span class="name">ref</span>/&gt;</span><span class="tag">&lt;/<span class="name">util:list</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>自动注入、装配  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">	byType通过setter的类型自动寻找对应类型的bean装配  </span><br><span class="line">	byName通过setter的名称自动匹配对应的bean的id  </span><br><span class="line">#### &quot;切面&quot;  </span><br><span class="line">```&lt;bean&gt;```可以设置init-method和destroy-method，后者目前发现只在单例模式生效  </span><br><span class="line">通过实现BeanPostProcessor接口并注册为Bean，可以为文件内的Bean创建后处理器  </span><br><span class="line">#### 工厂Bean  </span><br><span class="line">通过实现FactoryBean并实现方法，getBean时通过该工厂Bean获得产品（不同类型）  </span><br><span class="line">#### 执行顺序  </span><br><span class="line">类的构造函数 -&gt; setter注入 -&gt; (aware -&gt;) BeanPostProcessor.Before -&gt; init-method -&gt; BeanPostProcessor.After -&gt; |生命周期结束后| -&gt; destroy-method  </span><br><span class="line">#### 配置文件引入</span><br><span class="line">```xml</span><br><span class="line">&lt;context:property-placeholder location=&quot;目录&quot;/&gt;</span><br></pre></td></tr></table></figure>
+可用classpath:前缀指定类目录<br>使用${属性名}替换(即EL表达式)  <h2 id="注解方式"><a href="#注解方式" class="headerlink" title="注解方式"></a>注解方式</h2><h4 id="启用方式"><a href="#启用方式" class="headerlink" title="启用方式"></a>启用方式</h4></li>
+<li>配置文件中<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">&quot;要搜索注解的包目录根部&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+use-default-filters指是否扫描所有<br>可创建子级<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:include-filter</span> <span class="attr">type</span>=<span class="string">&quot;anntation&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+include或exclude<br>其中expression为要包含或排除的注解类型，如<br>org.springframework.stereotype.Component&#x2F;Controller&#x2F;….</li>
+<li>定义配置类<br>定义空类，给予注解@Configuration并给予@ComponentScan(basePackages&#x3D;{“包目录根”,,,})<br>将ClassPathXmlApplicationContext替换为AnnotationConfigApplicationContext(该配置空类.class)<h4 id="定义Bean-1"><a href="#定义Bean-1" class="headerlink" title="定义Bean"></a>定义Bean</h4></li>
+<li>在类前加上注解@Component, @Service, @Controller, @Repository<br>四者功能相同，日后可能不同，并且用于约定区分不同类型的Bean并且用于过滤器过滤</li>
+<li>使用@Scope设定作用域（小写字符串<h4 id="自动装配"><a href="#自动装配" class="headerlink" title="自动装配"></a>自动装配</h4></li>
+<li>在setter方法前添加注解@Autowired即按setter参数类型自动装配</li>
+<li>当有多个匹配项（参数类型为接口有多个实现）时可用@Qualifier指定要用的Bean的ID</li>
+<li>简单类型可用@Value注入<h4 id="配置文件引入"><a href="#配置文件引入" class="headerlink" title="配置文件引入"></a>配置文件引入</h4>@PropertySource(“classpath:也可以不带前缀”)</li>
+</ul>
+<hr>
+<h1 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p><strong>后面所说的通知类，指通常所说的代理Proxy类</strong>  </p>
+<ul>
+<li>连接点：类中可以被增强（代理）的方法</li>
+<li>切入点：实际上被增强的连接点</li>
+<li>通知：增强部分的代码<ul>
+<li>前置通知、后置通知：方法执行前或后的增强</li>
+<li>环绕通知：前和后都增强</li>
+<li>异常通知：出现异常时处理</li>
+<li>最终通知：无论如何都会最后执行的（try后的finally</li>
+</ul>
+</li>
+<li>切面：把通知应用到切入点的过程（织入、执行<h2 id="基于XML"><a href="#基于XML" class="headerlink" title="基于XML"></a>基于XML</h2><h4 id="配置切入点"><a href="#配置切入点" class="headerlink" title="配置切入点"></a>配置切入点</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//注意需要bean</span><br><span class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">	//切入点</span><br><span class="line">	<span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">&quot;切入点名称&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;同下方注解选择切入点参数&quot;</span>/&gt;</span></span><br><span class="line">	//通知</span><br><span class="line">	<span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">ref</span>=<span class="string">&quot;通知类&quot;</span>&gt;</span></span><br><span class="line">		//其他通知类型同</span><br><span class="line">		<span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">method</span>=<span class="string">&quot;通知实现方法&quot;</span> <span class="attr">pointcut-ref</span>=<span class="string">&quot;切入点名称&quot;</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="基于注解"><a href="#基于注解" class="headerlink" title="基于注解"></a>基于注解</h2><h4 id="启用方式-1"><a href="#启用方式-1" class="headerlink" title="启用方式"></a>启用方式</h4></li>
+<li>配置文件<br>开启扫描<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">&quot;要搜索注解的包目录根部&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+自动代理 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:aspectj-autoproxy</span>/&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><pre><code>定义配置类  
+</code></pre>
+   在IOC的基础上再加上@EnableAspectJAutoProxy<br>   proxyTargetClass表示是否强制cglib<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4></li>
+<li><pre><code>被用于加强的和加强内容的类都要为Bean  
+</code></pre>
+   通知类还需注解@Aspect  </li>
+<li><pre><code>通知方法前加上注解 
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>注解</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@Before</td>
+<td>前置通知，在连接点前执行</td>
+</tr>
+<tr>
+<td>@AfterReturning</td>
+<td>连接点正常执行后通知，没有抛出错误时执行</td>
+</tr>
+<tr>
+<td>@AfterThrowing</td>
+<td>连接点抛出错误时执行</td>
+</tr>
+<tr>
+<td>@After</td>
+<td>无论有没有抛出错误都在连接点结束后执行(finally)</td>
+</tr>
+<tr>
+<td>@Around</td>
+<td>在@Before前和没有抛出错误结束后都执行</td>
+</tr>
+</tbody></table>
+   <em><strong>不同版本可能会有不同</strong></em><br>   顺序: (环绕调用前–)前–切入点–后返回&#x2F;后抛出–最终后(–环绕调用后)</li>
+<li><pre><code>通知的参数语法（切入点选择）
+</code></pre>
+<ul>
+<li><pre><code>execution(* 包.类.方法(参数类型表))  
+</code></pre>
+   指定为这个方法</li>
+<li><pre><code>execution(* 包.类.*(..两个点表示任意))  
+</code></pre>
+   指定为这个类的所有方法</li>
+<li><pre><code>execution(* 包.*.*(..))  
+</code></pre>
+   指定为这个包下所有类的所有方法（当然也可指定所有类的某个方法</li>
+<li><pre><code>execution(* 包..*.*(..))
+</code></pre>
+   在上一个的基础上，一同搜索子包里的</li>
+<li><pre><code>execution(* *A(..))
+</code></pre>
+   所有以“A”结尾的方法</li>
+<li><pre><code>within(包.*)  
+</code></pre>
+   包内的所有接入点，也可双点搜索子包<br>   Spring AOP Only</li>
+<li><pre><code>this/target(接口全路径)  
+</code></pre>
+   实现了这个接口的类的接入点<br>   this:	匹配不到被重写了的接口中的方法<br>   target:	全部  </li>
+<li><pre><code>相关功能注解
+</code></pre>
+<ul>
+<li><pre><code>@Target(注解类)  
+</code></pre>
+   同target execution用法</li>
+<li><pre><code>@Annotation(注解类)
+</code></pre>
+   所有含有这个注解的方法（接入点）</li>
+<li><pre><code>@Within(注解类)
+</code></pre>
+   同this execution用法</li>
+<li><pre><code>@Order(优先级，小的优先)  
+</code></pre>
+   多个通知同时作用于一个切入点时控制通知链的内部的顺序</li>
+</ul>
+</li>
+<li><pre><code>抽取公共（复用）切入点  
+</code></pre>
+   在通知类中对某个方法使用@Pointcut选择切入点，其他通知的参数写上该方法名<h2 id="坑"><a href="#坑" class="headerlink" title="坑"></a>坑</h2>使用IDEA内Spring Initializer创建Web工程时没有AOP依赖，需要：  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-aop<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="单元测试简单使用-SpringBoot的Junit5"><a href="#单元测试简单使用-SpringBoot的Junit5" class="headerlink" title="单元测试简单使用(SpringBoot的Junit5)"></a>单元测试简单使用(SpringBoot的Junit5)</h1><h2 id="引用依赖"><a href="#引用依赖" class="headerlink" title="引用依赖"></a>引用依赖</h2><p>只需要spring-boot-starter-test就可以把Junit引入</p>
+<h2 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h2><h4 id="使用范围"><a href="#使用范围" class="headerlink" title="使用范围"></a>使用范围</h4><p>默认只能在maven的src&#x2F;test&#x2F;java下使用</p>
+<h4 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h4><ul>
+<li><pre><code>测试用例类要加上注解@SpringBootTest  
+</code></pre>
+   等同于@RunWith或@ExtendsWith来让Spring运行测试</li>
+<li><pre><code>在方法前加上如@Test,@RepeatedTest等注解来形成一个测试
+</code></pre>
+</li>
+<li><pre><code>可在一个测试用例类或测试方法前使用@DisplayName来标记
+</code></pre>
+</li>
+</ul>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/Spring/" rel="tag">Spring</a>, <a class="tag-none-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2022-05-19T09:25:44.674Z" itemprop="dateModified">最后编辑：2022-05-19</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" Linux(Debian)服务器使用Docker简单搭建WordPress服务器" href="/2021/Linux-Debian-服务器使用Docker简单搭建WordPress服务器/">&lt; 上一篇</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" SpringMVC笔记" href="/2022/SpringMVC/">下一篇 &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        <li><a href="mailto:sodacooky@foxmail.com"><i class="fa fa-envelope"></i></a></li>
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://twitter.com/Sodacooky"><i class="fa fa-twitter"></i></a></li>
+                        
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/Sodacooky"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2022 Sodacooky's Blog 版权所有.</li>
+                            <li>博客已经创建了<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by Sodacooky.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://netlify.app/" target="_blank">Netlify</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="https://unpkg.com/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+
+    <script defer src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="https://unpkg.com/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>
