@@ -1,0 +1,773 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://avatars.githubusercontent.com/u/20016889?v=4">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/20016889?v=4">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Sodacooky">
+  <meta name="keywords" content="Sodacooky">
+  
+    <meta name="description" content="无SpringBoot的基础使用见另一篇文章。 引入依赖与配置Maven添加Starter： 1234&lt;dependency&gt;    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;    &lt;artifactId&gt;spring-boot-starter-amqp&lt;&#x2F;artifactId&gt;&lt;&#x2F;de">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RabbitMQ使用 SpringBoot整合篇">
+<meta property="og:url" content="https://sodacooky.netlify.app/2022/RabbitMQ%E4%BD%BF%E7%94%A8SpringBoot%E7%AF%87/index.html">
+<meta property="og:site_name" content="Sodacooky&#39;s Blog">
+<meta property="og:description" content="无SpringBoot的基础使用见另一篇文章。 引入依赖与配置Maven添加Starter： 1234&lt;dependency&gt;    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;    &lt;artifactId&gt;spring-boot-starter-amqp&lt;&#x2F;artifactId&gt;&lt;&#x2F;de">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sodacooky.netlify.app/images/2022/rabbitmq_with_springboot.png">
+<meta property="article:published_time" content="2022-11-11T15:59:59.000Z">
+<meta property="article:modified_time" content="2023-10-31T13:45:04.751Z">
+<meta property="article:author" content="Sodacooky">
+<meta property="article:tag" content="SpringBoot">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="RabbitMQ">
+<meta property="article:tag" content="消息队列">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sodacooky.netlify.app/images/2022/rabbitmq_with_springboot.png">
+  
+  
+  
+  <title>RabbitMQ使用 SpringBoot整合篇 - Sodacooky&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"sodacooky.netlify.app","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":4,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 30vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Sodacooky&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-friends"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/images/banner.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="RabbitMQ使用 SpringBoot整合篇"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-11-11 23:59" pubdate>
+          2022年11月11日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          11k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          93 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">RabbitMQ使用 SpringBoot整合篇</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>无SpringBoot的基础使用见<a href="/2022/rabbitmq%E4%BD%BF%E7%94%A8%E5%9F%BA%E7%A1%80%E7%AF%87/">另一篇文章</a>。</p>
+<h1 id="引入依赖与配置"><a href="#引入依赖与配置" class="headerlink" title="引入依赖与配置"></a>引入依赖与配置</h1><p>Maven添加Starter：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-amqp<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>SpringBoot的配置文件中：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">rabbitmq:</span><br>    <span class="hljs-attr">host:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.137</span><span class="hljs-number">.16</span><br>    <span class="hljs-attr">port:</span> <span class="hljs-number">5672</span><br>    <span class="hljs-attr">username:</span> <span class="hljs-string">admin</span><br>    <span class="hljs-attr">password:</span> <span class="hljs-string">admin</span><br><span class="hljs-comment"># 不会有笨蛋直接COPY吧</span><br></code></pre></td></tr></table></figure>
+
+<p>不需要在生产者或消费者声明队列和交换机，被配置类替代。</p>
+<p>我将以我看的教程的顺序，即以例子来逐步记录。</p>
+<h1 id="延迟队列"><a href="#延迟队列" class="headerlink" title="延迟队列"></a>延迟队列</h1><h2 id="延迟队列-Pro"><a href="#延迟队列-Pro" class="headerlink" title="延迟队列 Pro"></a>延迟队列 Pro</h2><p>只需要在配置类中配置好复杂的死信队列结构，就可以轻松使用。</p>
+<p><img src="/images/2022/rabbitmq_delayqueue_pro.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="配置类"><a href="#配置类" class="headerlink" title="配置类"></a>配置类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span> <span class="hljs-comment">//配置类</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyMqConfig</span> &#123;<br>    <span class="hljs-comment">//结构与上图中的基本相同</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">NORMAL_EXCHANGE</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;X&quot;</span>;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">DEAD_EXCHANGE</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Y&quot;</span>;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">NORMAL_QUEUE_1</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;QA&quot;</span>;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">NORMAL_QUEUE_2</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;QB&quot;</span>;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">DEAD_QUEUE</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;QD&quot;</span>;<br>    <span class="hljs-comment">//声明普通交换机</span><br>    <span class="hljs-meta">@Bean(&quot;xExchange&quot;)</span><br>    <span class="hljs-keyword">public</span> DirectExchange <span class="hljs-title function_">xExchange</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DirectExchange</span>(NORMAL_EXCHANGE);<br>    &#125;<br>    <span class="hljs-comment">//声明死信交换机</span><br>    <span class="hljs-meta">@Bean(&quot;yExchange&quot;)</span><br>    <span class="hljs-keyword">public</span> DirectExchange <span class="hljs-title function_">yExchange</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DirectExchange</span>(DEAD_EXCHANGE);<br>    &#125;<br>    <span class="hljs-comment">//声明两个普通队列</span><br>    <span class="hljs-meta">@Bean(&quot;queueA&quot;)</span><br>    <span class="hljs-keyword">public</span> Queue <span class="hljs-title function_">queueA</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> QueueBuilder<br>                .nonDurable(NORMAL_QUEUE_1)<br>                .ttl(<span class="hljs-number">10000</span>)<br>                .deadLetterExchange(DEAD_EXCHANGE) <span class="hljs-comment">//死信交换机与RoutingKey</span><br>                .deadLetterRoutingKey(<span class="hljs-string">&quot;YD&quot;</span>)<br>                .build();<br>    &#125;<br>    <span class="hljs-meta">@Bean(&quot;queueB&quot;)</span><br>    <span class="hljs-keyword">public</span> Queue <span class="hljs-title function_">queueB</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> QueueBuilder<br>                .nonDurable(NORMAL_QUEUE_2)<br>                .ttl(<span class="hljs-number">40000</span>)<br>                .deadLetterExchange(DEAD_EXCHANGE)<br>                .deadLetterRoutingKey(<span class="hljs-string">&quot;YD&quot;</span>)<br>                .build();<br>    &#125;<br>    <span class="hljs-comment">//声明死信队列</span><br>    <span class="hljs-meta">@Bean(&quot;queueD&quot;)</span><br>    <span class="hljs-keyword">public</span> Queue <span class="hljs-title function_">queueDead</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> QueueBuilder.nonDurable(DEAD_QUEUE).build();<br>    &#125;<br>    <span class="hljs-comment">//队列绑定</span><br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> Binding <span class="hljs-title function_">queueABindingX</span><span class="hljs-params">(<span class="hljs-meta">@Qualifier(&quot;queueA&quot;)</span> Queue qA, <span class="hljs-meta">@Qualifier(&quot;xExchange&quot;)</span> DirectExchange ex)</span> &#123;<br>        <span class="hljs-keyword">return</span> BindingBuilder.bind(qA).to(ex).with(<span class="hljs-string">&quot;XA&quot;</span>);<br>    &#125;<br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> Binding <span class="hljs-title function_">queueBBindingX</span><span class="hljs-params">(<span class="hljs-meta">@Qualifier(&quot;queueB&quot;)</span> Queue qB, <span class="hljs-meta">@Qualifier(&quot;xExchange&quot;)</span> DirectExchange ex)</span> &#123;<br>        <span class="hljs-keyword">return</span> BindingBuilder.bind(qB).to(ex).with(<span class="hljs-string">&quot;XB&quot;</span>);<br>    &#125;<br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> Binding <span class="hljs-title function_">queueDBindingX</span><span class="hljs-params">(<span class="hljs-meta">@Qualifier(&quot;queueD&quot;)</span> Queue qD, <span class="hljs-meta">@Qualifier(&quot;yExchange&quot;)</span> DirectExchange ex)</span> &#123;<br>        <span class="hljs-keyword">return</span> BindingBuilder.bind(qD).to(ex).with(<span class="hljs-string">&quot;YD&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>留意@Bean(“”)与@Qualifier(“”)的使用。</p>
+</blockquote>
+<h3 id="生产者"><a href="#生产者" class="headerlink" title="生产者"></a>生产者</h3><p>跟随教程使用Controller实现。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span><br><span class="hljs-meta">@RequestMapping(&quot;/test&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TestController</span> &#123;<br>    <span class="hljs-comment">//发送消息的关键</span><br>    <span class="hljs-meta">@Resource</span><br>    <span class="hljs-keyword">private</span> RabbitTemplate rabbitTemplate;<br><br>    <span class="hljs-comment">//测试发送的接口</span><br>    <span class="hljs-meta">@GetMapping(&quot;/send/&#123;msg&#125;&quot;)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">sendMessage</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable(&quot;msg&quot;)</span> String message)</span> &#123;<br>        LoggerFactory.getLogger(TestController.class).info(<span class="hljs-string">&quot;&#123;&#125;: &#123;&#125;&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(), message);<br>        rabbitTemplate.convertAndSend(<span class="hljs-string">&quot;X&quot;</span>, <span class="hljs-string">&quot;XA&quot;</span>, <span class="hljs-string">&quot;Hi&quot;</span>);<br>        rabbitTemplate.convertAndSend(<span class="hljs-string">&quot;X&quot;</span>, <span class="hljs-string">&quot;XB&quot;</span>, <span class="hljs-string">&quot;Hi&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="消费者（死信）"><a href="#消费者（死信）" class="headerlink" title="消费者（死信）"></a>消费者（死信）</h3><p>消费者使用使用注解实现监听某个队列。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Slf4j</span><br><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">DeadLetterConsumer</span> &#123;<br>    <span class="hljs-meta">@RabbitListener(queues = &quot;QD&quot;)</span> <span class="hljs-comment">//监听QD</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">receiveD</span><span class="hljs-params">(Message message, Channel channel)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        log.info(<span class="hljs-string">&quot;Consumer: &#123;&#125;,&#123;&#125;&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(message.getBody()), <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>());<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>是的没错，使用<code>@RabbitListener</code>来声明一个方法作为Consumer，这里的参数列表自由发挥，一般来说需要一个Message。</p>
+<h2 id="延迟队列-Pro-Plus"><a href="#延迟队列-Pro-Plus" class="headerlink" title="延迟队列 Pro Plus"></a>延迟队列 Pro Plus</h2><p>上面的延迟队列，你要新的延迟时间就要创建新的队列，太笨比。</p>
+<p>应该由生产者指定过期时间，发送到一个没有设置过期时间的队列上（仍然没有消费者）。</p>
+<p><img src="/images/2022/rabbitmq_deadqueue_proplus.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="配置类-1"><a href="#配置类-1" class="headerlink" title="配置类"></a>配置类</h3><p>只是减少了TTL设置：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyMqConfig</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">DELAY_EXCHANGE</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;normal_exchange&quot;</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">DELAY_QUEUE</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;delay_queue&quot;</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">DELAY_ROUTINGKEY</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;delay_key&quot;</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">DEAD_EXCHANGE</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;dead_exchange&quot;</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">DEAD_ROUTINGKEY</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;dead_key&quot;</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">DEAD_QUEUE</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;dead_queue&quot;</span>;<br>    <span class="hljs-meta">@Bean(&quot;nExchange&quot;)</span><br>    <span class="hljs-keyword">public</span> DirectExchange <span class="hljs-title function_">nExchange</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DirectExchange</span>(DELAY_EXCHANGE);<br>    &#125;<br>    <span class="hljs-meta">@Bean(&quot;dExchange&quot;)</span><br>    <span class="hljs-keyword">public</span> DirectExchange <span class="hljs-title function_">dExchange</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DirectExchange</span>(DEAD_EXCHANGE);<br>    &#125;<br>    <span class="hljs-meta">@Bean(&quot;delay_queue&quot;)</span><br>    <span class="hljs-keyword">public</span> Queue <span class="hljs-title function_">delayQueue</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> QueueBuilder<br>                .nonDurable(DELAY_QUEUE)<br>                .deadLetterExchange(DEAD_EXCHANGE)<br>                .deadLetterRoutingKey(DEAD_ROUTINGKEY)<br>                .build();<br>    &#125;<br>    <span class="hljs-meta">@Bean(&quot;dead_queue&quot;)</span><br>    <span class="hljs-keyword">public</span> Queue <span class="hljs-title function_">deadQueue</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> QueueBuilder.nonDurable(DEAD_QUEUE).build();<br>    &#125;<br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> Binding <span class="hljs-title function_">queueBindingDelay</span><span class="hljs-params">(<span class="hljs-meta">@Qualifier(&quot;delay_queue&quot;)</span> Queue que, <span class="hljs-meta">@Qualifier(&quot;nExchange&quot;)</span> DirectExchange ex)</span> &#123;<br>        <span class="hljs-keyword">return</span> BindingBuilder.bind(que).to(ex).with(DELAY_ROUTINGKEY);<br>    &#125;<br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> Binding <span class="hljs-title function_">queueBindingDead</span><span class="hljs-params">(<span class="hljs-meta">@Qualifier(&quot;dead_queue&quot;)</span> Queue que, <span class="hljs-meta">@Qualifier(&quot;dExchange&quot;)</span> DirectExchange ex)</span> &#123;<br>        <span class="hljs-keyword">return</span> BindingBuilder.bind(que).to(ex).with(DEAD_ROUTINGKEY);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="生产者-1"><a href="#生产者-1" class="headerlink" title="生产者"></a>生产者</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Slf4j</span><br><span class="hljs-meta">@RestController</span><br><span class="hljs-meta">@RequestMapping(&quot;/test&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TestController</span> &#123;<br>    <span class="hljs-meta">@Resource</span><br>    <span class="hljs-keyword">private</span> RabbitTemplate rabbitTemplate;<br>    <span class="hljs-comment">//测试发送的接口</span><br>    <span class="hljs-meta">@GetMapping(&quot;/send/&#123;msg&#125;/&#123;ttl&#125;&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">sendMessage</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable</span> String msg, <span class="hljs-meta">@PathVariable</span> String ttl)</span> &#123;<br>        log.info(<span class="hljs-string">&quot;Send in TTL &#123;&#125; : &#123;&#125;&quot;</span>, ttl, msg);<br>        rabbitTemplate.convertAndSend(<br>                MyMqConfig.DELAY_EXCHANGE,<br>                MyMqConfig.DELAY_ROUTINGKEY,<br>                msg.getBytes(StandardCharsets.UTF_8),<br>                message -&gt; &#123;<br>                    <span class="hljs-comment">//设置TTL</span><br>                    message.getMessageProperties().setExpiration(ttl);<span class="hljs-comment">//ms</span><br>                    <span class="hljs-keyword">return</span> message;<br>                &#125;<br>        );<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;OK&quot;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>关键在于MessagePostProcessor，其签名实际如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@FunctionalInterface</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">MessagePostProcessor</span> &#123;<br>    Message <span class="hljs-title function_">postProcessMessage</span><span class="hljs-params">(Message var1)</span> <span class="hljs-keyword">throws</span> AmqpException;<br><br>    <span class="hljs-keyword">default</span> Message <span class="hljs-title function_">postProcessMessage</span><span class="hljs-params">(Message message, Correlation correlation)</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.postProcessMessage(message);<br>    &#125;<br><br>    <span class="hljs-keyword">default</span> Message <span class="hljs-title function_">postProcessMessage</span><span class="hljs-params">(Message message, Correlation correlation, String exchange, String routingKey)</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.postProcessMessage(message, correlation);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>使用的是第一个，只有一个Message的“重载”，对消息进行操作原样返回即可。</p>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>如果前面发的一条消息延迟很大，而后面的延迟很小，会堵在前面的消息等待TTL（队列先进先出特性）。</p>
+<p>该问题不引入插件目前无解。</p>
+<h2 id="延迟队列-Pro-Plus-Max（基于插件）"><a href="#延迟队列-Pro-Plus-Max（基于插件）" class="headerlink" title="延迟队列 Pro Plus Max（基于插件）"></a>延迟队列 Pro Plus Max（基于插件）</h2><p>要想解决上面的问题，需要插件来让RabbitMQ支持该功能。</p>
+<h3 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h3><p>到RabbitMQ网站上下载，<a target="_blank" rel="noopener" href="https://www.rabbitmq.com/community-plugins.html">社区插件</a>。</p>
+<p>也可以到Github，<a target="_blank" rel="noopener" href="https://github.com/rabbitmq/rabbitmq-delayed-message-exchange">链接</a>。</p>
+<p>藏得有点深。</p>
+<p>找到插件目录：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">rabbitmq-plugins directories -s<br><span class="hljs-meta prompt_"># </span><span class="language-bash">通常输出</span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">Plugin archives directory: /usr/lib/rabbitmq/plugins:/usr/lib/rabbitmq/lib/rabbitmq_server-3.11.2/plugins</span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">Plugin expansion directory: /var/lib/rabbitmq/mnesia/rabbit@debian-plugins-expand</span><br><span class="hljs-meta prompt_">#</span><span class="language-bash">Enabled plugins file: /etc/rabbitmq/enabled_plugins</span><br></code></pre></td></tr></table></figure>
+
+<p>把下载的插件安装包丢到Plugin Archives目录。</p>
+<p>启用：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">rabbitmq-plugins enable rabbitmq_delayed_message_exchange<br></code></pre></td></tr></table></figure>
+
+<p>最后重启：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">systemctl restart rabbitmq-server.service <br></code></pre></td></tr></table></figure>
+
+<p>安装成功后，可在管理界面创建交换机时看到新的类型，x-delayed-message。这也意味着，延迟队列实现从利用死信队列变为使用交换机。新的结构如下：</p>
+<p><img src="/images/2022/rabbitmq_delayqueue_proplusmax.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="配置类-2"><a href="#配置类-2" class="headerlink" title="配置类"></a>配置类</h3><p>新的交换机类型需要额外的配置，没有那个类了，需要自定义交换机。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyMqConfig</span> &#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">DELAY_EXCHANGE</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;delay_exchange&quot;</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">DELAY_QUEUE</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;delay_queue&quot;</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">DELAY_RK</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;delay_rk&quot;</span>;<br><br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> CustomExchange <span class="hljs-title function_">delayExchange</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-comment">//交换机参数填上类型，其实就是延迟+什么基础类型的交换机，可以是直接、扇出等</span><br>        Map&lt;String, Object&gt; args = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>        args.put(<span class="hljs-string">&quot;x-delayed-type&quot;</span>, <span class="hljs-string">&quot;direct&quot;</span>);<span class="hljs-comment">//一般用Direct</span><br>        <span class="hljs-comment">//CustomExchange(String name, String type, boolean durable, boolean autoDelete, Map&lt;String, Object&gt; arguments)</span><br>        <span class="hljs-comment">//在第二个参数——交换机类型填上我们的新交换机类型</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">CustomExchange</span>(DELAY_EXCHANGE, <span class="hljs-string">&quot;x-delayed-message&quot;</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">false</span>, args);<br>    &#125;<br><br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> Queue <span class="hljs-title function_">delayQueue</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> QueueBuilder.nonDurable(DELAY_QUEUE).build();<br>    &#125;<br><br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> Binding <span class="hljs-title function_">delayExchangeBinding</span><span class="hljs-params">(<span class="hljs-meta">@Qualifier(&quot;delayExchange&quot;)</span> CustomExchange ex, <span class="hljs-meta">@Qualifier(&quot;delayQueue&quot;)</span> Queue que)</span> &#123;<br>        <span class="hljs-keyword">return</span> BindingBuilder.bind(que).to(ex).with(DELAY_RK).noargs();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>留意@Bean与@Qualifier(“”)的使用。</p>
+</blockquote>
+<h3 id="生产者-2"><a href="#生产者-2" class="headerlink" title="生产者"></a>生产者</h3><p>只变了设置延迟的一行。</p>
+<p>生产者发送消息设置Expiration变为设置Delay。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Slf4j</span><br><span class="hljs-meta">@RestController</span><br><span class="hljs-meta">@RequestMapping(&quot;/test&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TestController</span> &#123;<br>    <span class="hljs-meta">@Resource</span><br>    <span class="hljs-keyword">private</span> RabbitTemplate rabbitTemplate;<br>    <span class="hljs-comment">//测试发送的接口</span><br>    <span class="hljs-meta">@GetMapping(&quot;/send/&#123;msg&#125;/&#123;ttl&#125;&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">sendMessage</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable</span> String msg, <span class="hljs-meta">@PathVariable</span> String ttl)</span> &#123;<br>        log.info(<span class="hljs-string">&quot;Send in TTL &#123;&#125; : &#123;&#125;&quot;</span>, ttl, msg);<br>        rabbitTemplate.convertAndSend(<br>                MyMqConfig.DELAY_EXCHANGE,<br>                MyMqConfig.DELAY_RK,<br>                msg.getBytes(StandardCharsets.UTF_8),<br>                message -&gt; &#123;<br>                    <span class="hljs-comment">//从setExpiration变成了setDelay</span><br>                    message.getMessageProperties().setDelay(Integer.parseInt(ttl));<span class="hljs-comment">//ms</span><br>                    <span class="hljs-keyword">return</span> message;<br>                &#125;<br>        );<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;OK&quot;</span>;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="延迟队列-总结"><a href="#延迟队列-总结" class="headerlink" title="延迟队列 总结"></a>延迟队列 总结</h2><p>利用RabbitMQ特性实现需要延迟的场景，可以简化并且消息不会丢失（开了持久化）。</p>
+<p>在开发中要使用延迟队列，首选是使用基于插件的方法，但如果每个任务的延迟是固定的那么用死信队列也行。</p>
+<h1 id="发布确认"><a href="#发布确认" class="headerlink" title="发布确认"></a>发布确认</h1><h2 id="交换机确认"><a href="#交换机确认" class="headerlink" title="交换机确认"></a>交换机确认</h2><p>和基础篇中的情况基本一致，把消息缓存起来以防交换机寄了没机会重传。</p>
+<h3 id="配置与配置类"><a href="#配置与配置类" class="headerlink" title="配置与配置类"></a>配置与配置类</h3><p>需要在配置文件中启用发布确认：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">rabbitmq:</span><br>    <span class="hljs-attr">publisher-confirm-type:</span> <span class="hljs-string">correlated</span><br><span class="hljs-comment"># none:</span><br><span class="hljs-comment"># 关闭发布确认，默认值</span><br><span class="hljs-comment"># simple:</span><br><span class="hljs-comment"># &quot;Use waitForConfirms() or waitForConfirmsOrDie() within scoped operations.&quot;，用在同步模式，这两个方法返回false会关闭channel无法再发送消息</span><br><span class="hljs-comment"># correlated:</span><br><span class="hljs-comment"># &quot;Use with CorrelationData to correlate confirmations with sent messsages.&quot;，用在异步回调模式</span><br></code></pre></td></tr></table></figure>
+
+<p>结构是，简单的一生产者一消费者与一直接交换机和消费者的队列，串联起来，硬要看配置类的话就：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Configuration</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyMqConfig</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">EXCHANGE_NAME</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;E&quot;</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">ROUTING_KEY</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;RK&quot;</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">QUEUE_NAME</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;Q&quot;</span>;<br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> DirectExchange <span class="hljs-title function_">theExchange</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> ExchangeBuilder.directExchange(EXCHANGE_NAME).autoDelete().build();<br>    &#125;<br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> Queue <span class="hljs-title function_">theQueue</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> QueueBuilder.durable(QUEUE_NAME).autoDelete().build();<br>    &#125;<br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> Binding <span class="hljs-title function_">theBinding</span><span class="hljs-params">(<span class="hljs-meta">@Qualifier(&quot;theExchange&quot;)</span> DirectExchange exchange, <span class="hljs-meta">@Qualifier(&quot;theQueue&quot;)</span> Queue queue)</span> &#123;<br>        <span class="hljs-keyword">return</span> BindingBuilder.bind(queue).to(exchange).with(ROUTING_KEY);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>留意ExchangeBuilder。</p>
+</blockquote>
+<h3 id="生产者-3"><a href="#生产者-3" class="headerlink" title="生产者"></a>生产者</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//设置确认回调方法，等同于异步回调</span><br>rabbitTemplate.setConfirmCallback((correlationData, ack, cause) -&gt; &#123;<br>    <span class="hljs-comment">//correlationData可能为null，这玩意是在生产者自己填写的，没填写就没有</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">id</span> <span class="hljs-operator">=</span> (<span class="hljs-literal">null</span> == correlationData) ? <span class="hljs-string">&quot;&quot;</span> : correlationData.getId();<br>    <span class="hljs-keyword">if</span> (ack) log.info(<span class="hljs-string">&quot;Success &#123;&#125;&quot;</span>, id);<br>    <span class="hljs-keyword">else</span> log.error(<span class="hljs-string">&quot;Fail &#123;&#125;, Reason: &#123;&#125;&quot;</span>, id, cause);<br>&#125;);<br><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * Callback原型：</span><br><span class="hljs-comment"> * public interface ConfirmCallback &#123;</span><br><span class="hljs-comment"> * void confirm (@Nullable CorrelationData correlationData,boolean ack,@Nullable String cause);</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> *  correlationData     消息的ID及相关信息</span><br><span class="hljs-comment"> *  ack                 交换机是否收到消息</span><br><span class="hljs-comment"> *  cause               失败的原因，没失败为null</span><br><span class="hljs-comment"> */</span><br><br>rabbitTemplate.convertAndSend(<br>        MyMqConfig.EXCHANGE_NAME,<br>        MyMqConfig.ROUTING_KEY,<br>        msg.getBytes(StandardCharsets.UTF_8)<br><span class="hljs-comment">//      ,new CorrelationData(....)</span><br>);<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>记得填写CorrelationData。</p>
+</blockquote>
+<p>如何重发消息请看基础篇，需要注意的是这里ID就不用什么deliverTag了，自己生成个填CorrelationData里吧。</p>
+<p>可以尝试掐网线、写错交换机名称来模仿到交换机的丢包。</p>
+<blockquote>
+<p>和基础篇中的一样，不可感知交换机后的如不可路由等失败的丢失。解决见下方。</p>
+</blockquote>
+<h2 id="回退消息（队列确认）"><a href="#回退消息（队列确认）" class="headerlink" title="回退消息（队列确认）"></a>回退消息（队列确认）</h2><p>将交换机发送到队列失败的消息回退给生产者，好让生产者处理。</p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>需要配置：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">rabbitmq:</span><br>    <span class="hljs-attr">publisher-returns:</span> <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="生产者-4"><a href="#生产者-4" class="headerlink" title="生产者"></a>生产者</h3><p>其他部分与上一个生产者的相同，设置回调如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//设置回退回调方法</span><br>rabbitTemplate.setReturnsCallback(returned -&gt; &#123;<br>    log.error(<span class="hljs-string">&quot;Returned: &#123;&#125;, Reason: &#123;&#125;, Exchange: &#123;&#125;, RoutingKey: &#123;&#125;&quot;</span>,<br>            <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(returned.getMessage().getBody(), StandardCharsets.UTF_8),<br>            returned.getReplyText(),<br>            returned.getExchange(),<br>            returned.getRoutingKey());<br>&#125;);<br><span class="hljs-comment">//returned中，储存的是被退回的消息的，交换机、路由键、消息体(自己send的对象)、原因(replyText)</span><br></code></pre></td></tr></table></figure>
+
+<p>当遇到上述所谓无法路由的情况时，该回调会打印：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">Returned:</span> <span class="hljs-string">aaa,</span> <span class="hljs-attr">Reason:</span> <span class="hljs-string">NO_ROUTE,</span> <span class="hljs-attr">Exchange:</span> <span class="hljs-string">E,</span> <span class="hljs-attr">RoutingKey:</span> <span class="hljs-string">RK114514ERROR</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="坑"><a href="#坑" class="headerlink" title="坑"></a>坑</h1><h2 id="消息序列化"><a href="#消息序列化" class="headerlink" title="消息序列化"></a>消息序列化</h2><p>RabbitMQ的MessageConvert接口处理消息的序列化，其实现有 SimpleMessageConverter（默认）、Jackson2JsonMessageConverter等。当调用了 convertAndSend 时会使用 MessageConvert 进行消息对象的序列化。</p>
+<p>SimpleMessageConverter 对于要发送的消息体 body：</p>
+<ul>
+<li>为 byte[] 时不进行处理</li>
+<li>是 String 则转成字节数组</li>
+<li>是 Java 对象，则用JDK自带序列化将消息转成字节数组，性能较差</li>
+</ul>
+<p>Jackson2JsonMessageConverter顾名思义转成JSON。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-chain-item">技术</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/SpringBoot/" class="print-no-link">#SpringBoot</a>
+      
+        <a href="/tags/Java/" class="print-no-link">#Java</a>
+      
+        <a href="/tags/RabbitMQ/" class="print-no-link">#RabbitMQ</a>
+      
+        <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" class="print-no-link">#消息队列</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>RabbitMQ使用 SpringBoot整合篇</div>
+      <div>https://sodacooky.netlify.app/2022/RabbitMQ使用SpringBoot篇/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Sodacooky</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年11月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/SpringCloud/" title="SpringCloud笔记 （Netflix）">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">SpringCloud笔记 （Netflix）</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/RabbitMQ%E4%BD%BF%E7%94%A8%E5%9F%BA%E7%A1%80%E7%AF%87/" title="RabbitMQ使用 基础篇">
+                        <span class="hidden-mobile">RabbitMQ使用 基础篇</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
