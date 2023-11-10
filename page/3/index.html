@@ -19,7 +19,7 @@
     <meta name="description" content="PLACEHOLDER FOR NOTHING">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Sodacooky&#39;s Blog">
-<meta property="og:url" content="https://sodacooky.netlify.app/page/2/index.html">
+<meta property="og:url" content="https://sodacooky.netlify.app/page/3/index.html">
 <meta property="og:site_name" content="Sodacooky&#39;s Blog">
 <meta property="og:description" content="PLACEHOLDER FOR NOTHING">
 <meta property="og:locale" content="zh_CN">
@@ -233,23 +233,23 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/RabbitMQ%E5%AE%89%E8%A3%85%E4%B8%8E%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" target="_self">
-          <img src="/images/2022/rabbitmq_install.png" srcset="/img/loading.gif" lazyload alt="RabbitMQ安装与基本概念">
+        <a href="/2022/Linux%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E5%90%84%E7%A7%8D%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8%E6%B2%A1%E6%9C%89%E7%9A%84%E7%89%88%E6%9C%AC%E7%9A%84JDK/" target="_self">
+          <img src="/images/default_post_image.jpg" srcset="/img/loading.gif" lazyload alt="Linux安装使用各种包管理器没有的版本的JDK">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2022/RabbitMQ%E5%AE%89%E8%A3%85%E4%B8%8E%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" target="_self">
-          RabbitMQ安装与基本概念
+        <a href="/2022/Linux%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E5%90%84%E7%A7%8D%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8%E6%B2%A1%E6%9C%89%E7%9A%84%E7%89%88%E6%9C%AC%E7%9A%84JDK/" target="_self">
+          Linux安装使用各种包管理器没有的版本的JDK
         </a>
       </h2>
 
       
-      <a class="index-excerpt " href="/2022/RabbitMQ%E5%AE%89%E8%A3%85%E4%B8%8E%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" target="_self">
+      <a class="index-excerpt " href="/2022/Linux%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E5%90%84%E7%A7%8D%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8%E6%B2%A1%E6%9C%89%E7%9A%84%E7%89%88%E6%9C%AC%E7%9A%84JDK/" target="_self">
         <div>
-          安装本文只记录如何在Linux(Debian)上安装。 参考官网安装文档，直接把“PackageCloud Quick Start Script”部分的脚本复制粘贴运行即可。 在Linux上安装完成后，需要启用服务： 1234# 开机启动systemctl enable rabbitmq-server# 立刻启动systemctl start rabbitmq-server  配置管理界面开启1r
+          下载你需要的版本的JDK网上有许多预编译的OpenJDK，我选择的是Adoptium的Temurin。 文件可以解压到任何稳定安全的文件夹中，但是建议放在/usr/lib/jvm/，因为包管理器的JDK也是放到这里。 解压好的目录像这样： 12345678/usr/lib/jvm/└── jdk8u322    ├── bin    ├── include    ├── jre    ├── li
         </div>
       </a>
 
@@ -257,8 +257,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-10-20 11:45" pubdate>
-              2022-10-20
+            <time datetime="2022-05-03 01:45" pubdate>
+              2022-05-03
             </time>
           </div>
         
@@ -288,78 +288,7 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/RabbitMQ/">#RabbitMQ</a>
-            
-              <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">#消息队列</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/MyBatis-Plus%E5%A4%87%E5%BF%98%E7%AC%94%E8%AE%B0/" target="_self">
-          <img src="/images/default_post_image.jpg" srcset="/img/loading.gif" lazyload alt="MyBatis-Plus备忘笔记">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2022/MyBatis-Plus%E5%A4%87%E5%BF%98%E7%AC%94%E8%AE%B0/" target="_self">
-          MyBatis-Plus备忘笔记
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt " href="/2022/MyBatis-Plus%E5%A4%87%E5%BF%98%E7%AC%94%E8%AE%B0/" target="_self">
-        <div>
-          依赖使用SpringBoot时在Maven添加Starter： 12345678910111213&lt;!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter --&gt;&lt;dependency&gt;    &lt;groupId&gt;com.baomidou&lt;/groupId&g
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-10-19 22:10" pubdate>
-              2022-10-19
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-chain-item">技术</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Mybatis-Plus/">#Mybatis-Plus</a>
-            
-              <a href="/tags/SpringBoot/">#SpringBoot</a>
+              <a href="/tags/Linux/">#Linux</a>
             
               <a href="/tags/Java/">#Java</a>
             
@@ -373,23 +302,23 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/Spring%E6%A0%B8%E5%BF%83%E4%B8%8EMVC%E7%AC%94%E8%AE%B0/" target="_self">
-          <img src="/images/2022/spring_logo.jpeg" srcset="/img/loading.gif" lazyload alt="Spring核心与MVC笔记">
+        <a href="/2022/%E5%9F%BA%E4%BA%8EHEXO%E5%9C%A8GITHUB-PAGE%E5%BB%BA%E7%AB%8B%E7%AE%80%E5%8D%95%E5%8D%9A%E5%AE%A2/" target="_self">
+          <img src="/images/2022/hexo.png" srcset="/img/loading.gif" lazyload alt="基于HEXO在GITHUB PAGE建立简单博客">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2022/Spring%E6%A0%B8%E5%BF%83%E4%B8%8EMVC%E7%AC%94%E8%AE%B0/" target="_self">
-          Spring核心与MVC笔记
+        <a href="/2022/%E5%9F%BA%E4%BA%8EHEXO%E5%9C%A8GITHUB-PAGE%E5%BB%BA%E7%AB%8B%E7%AE%80%E5%8D%95%E5%8D%9A%E5%AE%A2/" target="_self">
+          基于HEXO在GITHUB PAGE建立简单博客
         </a>
       </h2>
 
       
-      <a class="index-excerpt " href="/2022/Spring%E6%A0%B8%E5%BF%83%E4%B8%8EMVC%E7%AC%94%E8%AE%B0/" target="_self">
+      <a class="index-excerpt " href="/2022/%E5%9F%BA%E4%BA%8EHEXO%E5%9C%A8GITHUB-PAGE%E5%BB%BA%E7%AB%8B%E7%AE%80%E5%8D%95%E5%8D%9A%E5%AE%A2/" target="_self">
         <div>
-          前言现在已经很少有新项目不使用SpringBoot而使用基础的、原始的Spring框架以及SpringMVC，但SpringBoot又会需要这些“老东西”的概念，故重新整理SpringBoot的“前辈”相关笔记并合并，主要还是对概念的记录。 Spring IOC IOC意为控制反转，简单理解为将对象的创建(new)行为由程序员转为由容器执行，程序员只需要在任意要用的地方“注入”。  基于注解定义B
+          前言如果你不想折腾，那么托管WordPress是最好的选择。 HEXO不止可以部署到Github Pages，因为其本质是通过Markdown生成静态页面，所以任何你想到的网页容器都行。 WordPress虽然一站式解决，但是安装很麻烦，故我选择了HEXO。 环境HEXO基于Node.js，建议使用nvm（或nvm-windows）安装，方便管理各种版本的node.js。 在nvm中安装管理nod
         </div>
       </a>
 
@@ -397,8 +326,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-09-30 02:00" pubdate>
-              2022-09-30
+            <time datetime="2022-04-30 18:04" pubdate>
+              2022-04-30
             </time>
           </div>
         
@@ -427,6 +356,146 @@
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/HEXO/">#HEXO</a>
+            
+              <a href="/tags/%E5%8D%9A%E5%AE%A2/">#博客</a>
+            
+              <a href="/tags/Github/">#Github</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2022/%E9%A3%9E%E6%9C%BA%E8%84%91%E8%A2%8B%E5%85%A8%E5%AE%B6%E6%A1%B6%E8%AF%84%E6%B5%8B%E6%96%B9%E6%B3%95/" target="_self">
+          <img src="/images/default_post_image.jpg" srcset="/img/loading.gif" lazyload alt="飞机脑袋全家桶评测方法">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2022/%E9%A3%9E%E6%9C%BA%E8%84%91%E8%A2%8B%E5%85%A8%E5%AE%B6%E6%A1%B6%E8%AF%84%E6%B5%8B%E6%96%B9%E6%B3%95/" target="_self">
+          飞机脑袋全家桶评测方法
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2022/%E9%A3%9E%E6%9C%BA%E8%84%91%E8%A2%8B%E5%85%A8%E5%AE%B6%E6%A1%B6%E8%AF%84%E6%B5%8B%E6%96%B9%E6%B3%95/" target="_self">
+        <div>
+          使用Eval Reset插件的时代已经被打开必须登录或者Act结束了。 插件作者本人带来了新的方法：Java Agent 下载ja-netfilter前往神奇的网站，在网页顶部下载一份额外为飞机脑袋全家准备的ja-netfilter。  2022.6.1更新后，神奇的网站变成了一个各个神奇网站的列表，选择一个可用的即可。  安装将下载的压缩包解压到一个方便的地方。 如果你有能力，剩下的看readm
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-04-30 17:23" pubdate>
+              2022-04-30
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-chain-item">技术</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/JetBrains/">#JetBrains</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2022/SpringBoot/" target="_self">
+          <img src="/images/default_post_image.jpg" srcset="/img/loading.gif" lazyload alt="SpringBoot笔记">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2022/SpringBoot/" target="_self">
+          SpringBoot笔记
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2022/SpringBoot/" target="_self">
+        <div>
+          原理依赖 Maven包含了SpringBoot的各种依赖用户只需要引入启动器(spring-boot-starter-xxx)，版本被依赖管理（父项目）当然，不能这样引入的、偏僻的包也可以用老方法引入  自动配置 @SpringBootApplication@SpringBootApplication该注解将类注册为Bean并标注为SpringBoot应用（启动类）   其内main方法内的Spr
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-23 17:23" pubdate>
+              2022-03-23
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-chain-item">技术</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/SpringBoot/">#SpringBoot</a>
             
               <a href="/tags/Spring/">#Spring</a>
             
@@ -442,23 +511,23 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/MySQL%E5%85%8D%E5%AE%89%E8%A3%85%E7%89%88%E9%85%8D%E7%BD%AE(Windows)/" target="_self">
-          <img src="/images/default_post_image.jpg" srcset="/img/loading.gif" lazyload alt="MySQL免安装版安装与配置(Windows)">
+        <a href="/2021/FFmpeg%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD%E7%AC%94%E8%AE%B0/" target="_self">
+          <img src="/images/2021/ffmpeg_logo.jpg" srcset="/img/loading.gif" lazyload alt="FFmpeg备忘笔记">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2022/MySQL%E5%85%8D%E5%AE%89%E8%A3%85%E7%89%88%E9%85%8D%E7%BD%AE(Windows)/" target="_self">
-          MySQL免安装版安装与配置(Windows)
+        <a href="/2021/FFmpeg%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD%E7%AC%94%E8%AE%B0/" target="_self">
+          FFmpeg备忘笔记
         </a>
       </h2>
 
       
-      <a class="index-excerpt " href="/2022/MySQL%E5%85%8D%E5%AE%89%E8%A3%85%E7%89%88%E9%85%8D%E7%BD%AE(Windows)/" target="_self">
+      <a class="index-excerpt " href="/2021/FFmpeg%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD%E7%AC%94%E8%AE%B0/" target="_self">
         <div>
-          本文为在Windows系统上安装，因为通常Windows会需要这样安装。  下载从MySQL下载社区（GPL）版本，链接。 下载完成后解压到合适的目录，如下结构： 123456591M    ./bin14K     ./docs416K    ./include265M    ./lib9.9M    ./share1.1G    .  配置配置文件如果想要更改如服务器端口等设置，可在&#x2
+          安装Linux直接通过包管理器安装，Windows则在官网下载二进制文件并添加到PATH即可使用ffmpeg。 基本使用FFmpeg可以自动识别输入和输出的格式（通过后缀名或读取信息），并进行简单的转换： 12# -i 表示后面紧跟一个输入ffmpeg -i from_video.mp4 to_video.avi  如果想要指定转换使用的编码器，码率等： 123ffmpeg -i from.avi
         </div>
       </a>
 
@@ -466,8 +535,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-09-05 16:43" pubdate>
-              2022-09-05
+            <time datetime="2021-11-11 11:11" pubdate>
+              2021-11-11
             </time>
           </div>
         
@@ -497,78 +566,9 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/MySQL/">#MySQL</a>
+              <a href="/tags/FFmpeg/">#FFmpeg</a>
             
-              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">#数据库</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2022/ACME%E7%94%B3%E8%AF%B7%E5%85%8D%E8%B4%B9SSL%E8%AF%81%E4%B9%A6/" target="_self">
-          <img src="/images/default_post_image.jpg" srcset="/img/loading.gif" lazyload alt="ACME申请免费SSL证书">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2022/ACME%E7%94%B3%E8%AF%B7%E5%85%8D%E8%B4%B9SSL%E8%AF%81%E4%B9%A6/" target="_self">
-          ACME申请免费SSL证书
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt " href="/2022/ACME%E7%94%B3%E8%AF%B7%E5%85%8D%E8%B4%B9SSL%E8%AF%81%E4%B9%A6/" target="_self">
-        <div>
-          为什么需要ACME不使用SSL（HTTPS），或者使用某些奇怪机构签发的SSL证书，将使你处于裸奔和被限制的情况当中。 准备ACME通常运行在Linux上。 在Github上你在对应仓库可以下载到安装脚本，并看到与本文类似的文档，本文只是总结。 我们需要把ACME安装到系统中，执行 1curl  https://get.acme.sh | sh -s email=my@example.com 将会
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-05-20 10:33" pubdate>
-              2022-05-20
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-chain-item">技术</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">#服务器</a>
-            
-              <a href="/tags/SSL/">#SSL</a>
+              <a href="/tags/%E8%A7%86%E9%A2%91/">#视频</a>
             
           </div>
         
@@ -580,7 +580,7 @@
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/page/2/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#board">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/#board">4</a><a class="extend next" rel="next" href="/page/4/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 
